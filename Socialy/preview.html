@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apresentação Socialy - Todas as 10 Telas Interligadas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      background: #181920;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px 10px;
+      color: #fff;
+    }
+
+    .top-toolbar {
+      text-align: center;
+      margin-bottom: 16px;
+      max-width: 950px;
+      width: 100%;
+    }
+
+    .app-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #F0435F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(240, 67, 95, 0.15);
+      border: 1px solid rgba(240, 67, 95, 0.35);
+      color: #ff91a4;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    /* Screen Selector Pills */
+    .screen-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .pill-btn {
+      background: #252836;
+      border: 1px solid #383c50;
+      color: #b5bacb;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .pill-btn:hover {
+      background: #31364a;
+      color: #fff;
+    }
+
+    .pill-btn.active {
+      background: #DF5268;
+      border-color: #DF5268;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(223, 82, 104, 0.4);
+    }
+
+    /* Phone Mockup Frame */
+    .phone-container {
+      width: 100%;
+      max-width: 390px;
+      height: 740px;
+      background: #FFE9E8;
+      border-radius: 44px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 10px #2a2c35, 0 0 0 12px #1c1d24;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    /* Status Bar Mock */
+    .status-bar {
+      height: 38px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 22px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #333;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    .screen-view {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .screen-view.active {
+      display: flex;
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-bar {
+      height: 60px;
+      background: #FFE9E8;
+      border-top: 1px solid #DC586D;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 8px;
+      flex-shrink: 0;
+      z-index: 20;
+    }
+
+    .bar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      cursor: pointer;
+      color: #A33757;
+      text-decoration: none;
+    }
+
+    .bar-item i {
+      font-size: 20px;
+    }
+
+    .bar-item span {
+      font-size: 10px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .bar-item.active {
+      font-weight: 700;
+    }
+
+    .plus-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 19px;
+      background: #F0435F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(240, 67, 95, 0.4);
+      cursor: pointer;
+    }
+
+    /* Screen 1: Tela Inicial */
+    #screen-inicial {
+      justify-content: space-between;
+      padding: 40px 28px 40px;
+      text-align: center;
+    }
+
+    .logo-hero {
+      margin: 40px auto 20px;
+      width: 170px;
+      height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-hero img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .hero-tagline {
+      font-size: 17px;
+      line-height: 25px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 20px;
+    }
+
+    .btn-solid-pink {
+      width: 100%;
+      height: 50px;
+      background: #DC586D;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      margin-bottom: 12px;
+    }
+
+    .btn-solid-white {
+      width: 100%;
+      height: 50px;
+      background: #fff;
+      color: #111;
+      border: 1px solid #fff;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+
+    /* Form Cards (Login & Criar Conta) */
+    .form-screen-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100%;
+    }
+
+    .auth-card {
+      width: 100%;
+      background: #FFF7F7;
+      border: 1.2px solid #DC5A70;
+      border-radius: 8px;
+      padding: 22px 24px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+
+    .auth-logo {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 8px;
+    }
+
+    .auth-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 20px;
+    }
+
+    .field-group {
+      text-align: left;
+      margin-bottom: 14px;
+    }
+
+    .field-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .field-input {
+      width: 100%;
+      height: 40px;
+      border: 1px solid #DF7182;
+      background: #F5F5F5;
+      border-radius: 4px;
+      padding: 0 10px;
+      font-size: 12px;
+      color: #111;
+    }
+
+    .forgot-link {
+      color: #DF5268;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .btn-auth {
+      width: 60%;
+      height: 46px;
+      background: #DF5268;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 20px auto 0;
+      display: block;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .or-divider {
+      display: flex;
+      align-items: center;
+      width: 80%;
+      margin: 24px auto 14px;
+    }
+
+    .or-line {
+      flex: 1;
+      height: 1px;
+      background: #A33757;
+      opacity: 0.4;
+    }
+
+    .or-text {
+      margin: 0 10px;
+      font-size: 12px;
+      color: #444;
+      font-weight: 600;
+    }
+
+    .google-btn {
+      width: 75%;
+      height: 42px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #333;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    .auth-footer {
+      font-size: 12px;
+      color: #111;
+      font-weight: 600;
+    }
+
+    .auth-footer span {
+      color: #DF5268;
+      cursor: pointer;
+      font-weight: 700;
+      margin-left: 5px;
+    }
+
+    /* Screen 4: Feed */
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      background: inherit;
+    }
+
+    .header-logo-text {
+      font-size: 24px;
+      font-weight: 800;
+      color: #DE5169;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-title-center {
+      font-size: 18px;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .feed-scroll {
+      padding: 8px 16px 20px;
+      overflow-y: auto;
+    }
+
+    .post-card {
+      background: #fff;
+      border: 1.2px solid #E8A8B5;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+    }
+
+    .post-user {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .avatar-circle-sm {
+      width: 34px;
+      height: 34px;
+      border-radius: 17px;
+      background: #FFE8EC;
+      border: 1px solid #E8A8B5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #DE5169;
+      overflow: hidden;
+    }
+
+    .avatar-circle-sm img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-photo {
+      width: 100%;
+      height: 190px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 12px;
+      display: block;
+      background: #FFE8EC;
+    }
+
+    .post-username {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2A1E22;
+    }
+
+    .post-body {
+      font-size: 14px;
+      line-height: 20px;
+      color: #1A0E13;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    .post-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #A33757;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .action-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .action-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    /* Screen 5: Publicação */
+    .post-detail-box {
+      padding: 10px 16px 20px;
+      overflow-y: auto;
+    }
+
+    .detail-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .avatar-gray {
+      width: 44px;
+      height: 44px;
+      border-radius: 22px;
+      background: #D3D3D3;
+      overflow: hidden;
+      border: 1.5px solid #DF5268;
+    }
+
+    .avatar-gray img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .author-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .author-time {
+      font-size: 10px;
+      color: #555;
+      margin-top: 2px;
+    }
+
+    .detail-text {
+      font-size: 15px;
+      color: #111;
+      margin-bottom: 10px;
+    }
+
+    .detail-img-box {
+      width: 100%;
+      height: 190px;
+      background: #FFE8EC;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .detail-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .comments-heading {
+      font-size: 15px;
+      font-weight: 700;
+      color: #111;
+      margin: 14px 0 8px;
+    }
+
+    .comment-bubble {
+      background: #CBA8B1;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .avatar-maroon {
+      width: 38px;
+      height: 38px;
+      border-radius: 19px;
+      background: #A33757;
+      flex-shrink: 0;
+      overflow: hidden;
+      border: 1px solid #DF5268;
+    }
+
+    .avatar-maroon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .comment-input-box {
+      background: #fff;
+      border: 1px solid #E8A8B5;
+      border-radius: 8px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      margin-top: 10px;
+    }
+
+    .comment-input-box input {
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 12px;
+      color: #111;
+    }
+
+    /* Screen 6: Nova Publicação */
+    .new-post-card {
+      background: #fff;
+      border: 1px solid #E8A8B5;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 10px 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .new-post-textarea {
+      width: 100%;
+      height: 160px;
+      border: 1px solid #eee;
+      background: #fafafa;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 13px;
+      outline: none;
+      resize: none;
+      margin-top: 10px;
+    }
+
+    .post-addons {
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #eee;
+      padding-top: 12px;
+      margin-top: 14px;
+      color: #DC586D;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Screen 7: Perfil */
+    .profile-hero {
+      text-align: center;
+      padding: 10px 16px;
+    }
+
+    .profile-avatar-circle {
+      width: 96px;
+      height: 96px;
+      border-radius: 48px;
+      background: #fff;
+      border: 2px solid #DF5268;
+      margin: 0 auto 10px;
+      position: relative;
+    }
+
+    .profile-avatar-circle img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .camera-badge {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid #DF5268;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #A33757;
+      font-size: 11px;
+    }
+
+    .stats-flex {
+      display: flex;
+      justify-content: center;
+      gap: 26px;
+      margin: 10px 0;
+      color: #111;
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+
+    .stat-val {
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: #666;
+    }
+
+    .profile-bio {
+      font-size: 12px;
+      color: #222;
+      line-height: 16px;
+      margin-bottom: 12px;
+    }
+
+    .profile-tabs {
+      display: flex;
+      justify-content: space-around;
+      color: #A33757;
+      font-size: 18px;
+      padding-bottom: 6px;
+    }
+
+    .profile-divider {
+      height: 1.5px;
+      background: #DF5268;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .profile-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0 16px 20px;
+      justify-content: space-between;
+    }
+
+    .grid-box {
+      width: 48%;
+      height: 150px;
+      background: #FFE8EC;
+      border: 1.5px solid #DF5268;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .grid-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .grid-box:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Screen 9: Navegação */
+    .nav-card-item {
+      background: #fff;
+      border: 1px solid #F0B8C2;
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .nav-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .nav-card-desc {
+      font-size: 11px;
+      color: #777;
+    }
+
+    /* Screen 10: Notificações */
+    .notif-card {
+      background: #fff;
+      border: 1px solid #F0B8C2;
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .notif-icon-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 17px;
+      background: #FFE8EC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #A33757;
+      flex-shrink: 0;
+    }
+
+    .notif-content {
+      flex: 1;
+      font-size: 12px;
+      color: #111;
+      line-height: 16px;
+    }
+
+    .notif-time {
+      font-size: 10px;
+      color: #DC586D;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* Interactive click feedback */
+    .clickable {
+      cursor: pointer;
+      transition: opacity 0.15s ease;
+    }
+    .clickable:active {
+      opacity: 0.65;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Toolbar with Switcher Pills -->
+  <div class="top-toolbar">
+    <div class="app-title">
+      <i class="fa-solid fa-fire" style="color: #DF5268;"></i>
+      Socialy (Expo SDK 57 / React 19)
+    </div>
+    <div class="badge">10 Telas Interligadas em JSX • Apresentação Oficial</div>
+
+    <div class="screen-pills">
+      <button class="pill-btn active" onclick="switchScreen('inicial')">1. Tela Inicial (Milena)</button>
+      <button class="pill-btn" onclick="switchScreen('login')">2. Login (Julio)</button>
+      <button class="pill-btn" onclick="switchScreen('criar-conta')">3. Criar Conta (Gui)</button>
+      <button class="pill-btn" onclick="switchScreen('feed')">4. Feed (Julio)</button>
+      <button class="pill-btn" onclick="switchScreen('publicacao')">5. Publicação (Bia Andrade)</button>
+      <button class="pill-btn" onclick="switchScreen('nova-pub')">6. Nova Publicação</button>
+      <button class="pill-btn" onclick="switchScreen('perfil')">7. Tela Perfil</button>
+      <button class="pill-btn" onclick="switchScreen('editar-perfil')">8. Tela Editar Perfil</button>
+      <button class="pill-btn" onclick="switchScreen('navegacao')">9. Tela Navegação</button>
+      <button class="pill-btn" onclick="switchScreen('notificacoes')">10. Tela Notificações</button>
+    </div>
+  </div>
+
+  <!-- Mobile Device Shell -->
+  <div class="phone-container">
+    <!-- Status Bar Mockup -->
+    <div class="status-bar">
+      <span>14:30</span>
+      <div style="display: flex; gap: 6px;">
+        <i class="fa-solid fa-signal"></i>
+        <i class="fa-solid fa-wifi"></i>
+        <i class="fa-solid fa-battery-full"></i>
+      </div>
+    </div>
+
+    <!-- 1. TELA INICIAL (Milena) -->
+    <div id="screen-inicial" class="screen-view active">
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div class="logo-hero">
+          <img src="./assets/socialy-logo-transparent.png" alt="Socialy" onerror="this.src='./assets/logo.png'">
+        </div>
+        <p class="hero-tagline">
+          Conecte-se com as pessoas e<br>compartilhe momentos.
+        </p>
+      </div>
+      <div>
+        <button class="btn-solid-pink clickable" onclick="switchScreen('login')">Entrar</button>
+        <button class="btn-solid-white clickable" onclick="switchScreen('criar-conta')">Criar conta</button>
+      </div>
+    </div>
+
+    <!-- 2. LOGIN (Julio) -->
+    <div id="screen-login" class="screen-view">
+      <div class="form-screen-content">
+        <div class="auth-card">
+          <img src="./assets/logo.png" class="auth-logo" alt="Socialy">
+          <h2 class="auth-title">Login</h2>
+          <div class="field-group">
+            <label class="field-label">E-mail</label>
+            <input type="email" class="field-input" placeholder="Ex:Email@email.com">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Senha</label>
+            <input type="password" class="field-input" placeholder="Digite sua senha">
+            <span class="forgot-link" onclick="alert('Link de redefinição enviado para seu e-mail!')">Esqueceu a senha?</span>
+          </div>
+          <button class="btn-auth clickable" onclick="switchScreen('feed')">Entrar</button>
+        </div>
+
+        <div class="or-divider">
+          <div class="or-line"></div>
+          <span class="or-text">Ou</span>
+          <div class="or-line"></div>
+        </div>
+
+        <button class="google-btn clickable" onclick="switchScreen('feed')">
+          <i class="fa-brands fa-google" style="color: #EA4335;"></i>
+          Entrar com Google
+        </button>
+
+        <div class="auth-footer">
+          Não tem uma conta? <span onclick="switchScreen('criar-conta')">Criar conta</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. CRIAR CONTA (Gui) -->
+    <div id="screen-criar-conta" class="screen-view">
+      <div class="form-screen-content">
+        <div class="auth-card">
+          <img src="./assets/logo.png" class="auth-logo" alt="Socialy">
+          <h2 class="auth-title">Criar Conta</h2>
+          <div class="field-group">
+            <label class="field-label">Nome Completo</label>
+            <input type="text" class="field-input" placeholder="Digite seu nome">
+          </div>
+          <div class="field-group">
+            <label class="field-label">E-mail</label>
+            <input type="email" class="field-input" placeholder="Ex:Email@email.com">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Senha</label>
+            <input type="password" class="field-input" placeholder="Digite sua senha">
+          </div>
+        </div>
+
+        <button class="btn-auth clickable" style="margin-top: 24px;" onclick="switchScreen('feed')">Entrar</button>
+
+        <div class="auth-footer" style="margin-top: 20px;">
+          Já tem uma conta? <span onclick="switchScreen('login')">Entrar</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. FEED (Julio) -->
+    <div id="screen-feed" class="screen-view" style="background: #FFEFEF;">
+      <div class="app-header">
+        <div class="header-logo-text">
+          <img src="./assets/logo.png" style="width: 32px; height: 32px;" alt="Logo">
+          socialy
+        </div>
+        <i class="fa-solid fa-magnifying-glass clickable" style="font-size: 20px; color: #7E2C3F;" onclick="switchScreen('navegacao')"></i>
+      </div>
+
+      <div class="feed-scroll">
+        <!-- Post 1 -->
+        <div class="post-card">
+          <div class="post-user clickable" onclick="switchScreen('perfil')">
+            <div class="avatar-circle-sm">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80" alt="bia_fr">
+            </div>
+            <span class="post-username">bia_fr</span>
+          </div>
+          <div class="post-body clickable" onclick="switchScreen('publicacao')">
+            Tipo eh tipo uh tipo nd aver
+          </div>
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&auto=format&fit=crop&q=80" class="post-photo clickable" onclick="switchScreen('publicacao')" alt="Post de bia_fr">
+          <div class="post-actions">
+            <div class="action-group">
+              <div class="action-item"><i class="fa-solid fa-heart" style="color: #DE5169;"></i> 301</div>
+              <div class="action-item clickable" onclick="switchScreen('publicacao')"><i class="fa-regular fa-comment"></i> 33</div>
+            </div>
+            <i class="fa-regular fa-bookmark"></i>
+          </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div class="post-card">
+          <div class="post-user clickable" onclick="switchScreen('perfil')">
+            <div class="avatar-circle-sm">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&auto=format&fit=crop&q=80" alt="Lili_00">
+            </div>
+            <span class="post-username">Lili_00</span>
+          </div>
+          <div class="post-body clickable" onclick="switchScreen('publicacao')">
+            Minhas roupas estão secando no varal já tem 3 dias e nada!!!!!
+          </div>
+          <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80" class="post-photo clickable" onclick="switchScreen('publicacao')" alt="Post de Lili_00">
+          <div class="post-actions">
+            <div class="action-group">
+              <div class="action-item"><i class="fa-solid fa-heart" style="color: #DE5169;"></i> 502</div>
+              <div class="action-item clickable" onclick="switchScreen('publicacao')"><i class="fa-regular fa-comment"></i> 502</div>
+            </div>
+            <i class="fa-regular fa-bookmark"></i>
+          </div>
+        </div>
+
+        <!-- Post 3 -->
+        <div class="post-card">
+          <div class="post-user clickable" onclick="switchScreen('perfil')">
+            <div class="avatar-circle-sm">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=80" alt="ogvlenza">
+            </div>
+            <span class="post-username">ogvlenza</span>
+          </div>
+          <div class="post-body clickable" onclick="switchScreen('publicacao')">
+            Frank Ocean volta nunca?
+          </div>
+          <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80" class="post-photo clickable" onclick="switchScreen('publicacao')" alt="Post de ogvlenza">
+          <div class="post-actions">
+            <div class="action-group">
+              <div class="action-item"><i class="fa-solid fa-heart" style="color: #DE5169;"></i> 101</div>
+              <div class="action-item clickable" onclick="switchScreen('publicacao')"><i class="fa-regular fa-comment"></i> 11</div>
+            </div>
+            <i class="fa-regular fa-bookmark"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="bottom-bar">
+        <div class="bar-item active" onclick="switchScreen('feed')"><i class="fa-solid fa-house"></i><span>Início</span></div>
+        <div class="bar-item" onclick="switchScreen('navegacao')"><i class="fa-solid fa-magnifying-glass"></i><span>Buscar</span></div>
+        <div class="plus-btn clickable" onclick="switchScreen('nova-pub')"><i class="fa-solid fa-plus"></i></div>
+        <div class="bar-item" onclick="switchScreen('notificacoes')"><i class="fa-regular fa-bell"></i><span>Notificações</span></div>
+        <div class="bar-item" onclick="switchScreen('perfil')"><i class="fa-regular fa-user"></i><span>perfil</span></div>
+      </div>
+    </div>
+
+    <!-- 5. PUBLICAÇÃO (Bia Andrade) -->
+    <div id="screen-publicacao" class="screen-view" style="background: #FFF4F4;">
+      <div class="app-header">
+        <i class="fa-solid fa-chevron-left clickable" style="font-size: 22px; color: #A33757;" onclick="switchScreen('feed')"></i>
+        <span class="header-title-center">Publicação</span>
+        <i class="fa-solid fa-share-nodes clickable" style="font-size: 18px; color: #A33757;" onclick="alert('Compartilhar publicação!')"></i>
+      </div>
+
+      <div class="post-detail-box">
+        <div class="detail-author">
+          <div class="avatar-gray">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=80" alt="Milena Mares">
+          </div>
+          <div>
+            <div class="author-name">Milena Mares</div>
+            <div class="author-time">hoje as 14:09</div>
+          </div>
+        </div>
+
+        <p class="detail-text">Viajando com minha família!!</p>
+
+        <div class="detail-img-box">
+          <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&auto=format&fit=crop&q=80" alt="Viagem com a família">
+        </div>
+
+        <div class="post-actions" style="margin-bottom: 14px;">
+          <div class="action-group">
+            <div class="action-item"><i class="fa-solid fa-heart" style="color: #A33757;"></i> 23</div>
+            <div class="action-item"><i class="fa-regular fa-comment"></i> 4</div>
+          </div>
+          <i class="fa-regular fa-bookmark"></i>
+        </div>
+
+        <div class="comments-heading">Comentarios</div>
+
+        <div class="comment-bubble">
+          <div class="avatar-maroon">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=80" alt="Milena Mares">
+          </div>
+          <div>
+            <div style="font-size: 12px; font-weight: 700; color: #111;">Milena Mares</div>
+            <div style="font-size: 9px; color: #333; margin-bottom: 6px;">hoje as 14:09</div>
+            <div style="font-size: 13px; font-weight: 500; color: #111;">Ficou incrível continua assim!!</div>
+          </div>
+        </div>
+
+        <div class="comment-input-box">
+          <input type="text" placeholder="Adicione um comentário :">
+        </div>
+      </div>
+
+      <div class="bottom-bar">
+        <div class="bar-item" onclick="switchScreen('feed')"><i class="fa-solid fa-house"></i><span>Início</span></div>
+        <div class="bar-item" onclick="switchScreen('navegacao')"><i class="fa-solid fa-magnifying-glass"></i><span>Buscar</span></div>
+        <div class="plus-btn clickable" onclick="switchScreen('nova-pub')"><i class="fa-solid fa-plus"></i></div>
+        <div class="bar-item" onclick="switchScreen('notificacoes')"><i class="fa-regular fa-bell"></i><span>Notificações</span></div>
+        <div class="bar-item" onclick="switchScreen('perfil')"><i class="fa-regular fa-user"></i><span>perfil</span></div>
+      </div>
+    </div>
+
+    <!-- 6. NOVA PUBLICAÇÃO -->
+    <div id="screen-nova-pub" class="screen-view">
+      <div class="app-header">
+        <i class="fa-solid fa-xmark clickable" style="font-size: 22px; color: #DC586D;" onclick="switchScreen('feed')"></i>
+        <span class="header-title-center">Nova Publicação</span>
+        <div style="width: 22px;"></div>
+      </div>
+
+      <div style="flex: 1; padding: 10px 0;">
+        <div class="new-post-card">
+          <h4 style="font-size: 14px; font-weight: 700; color: #111;">O que você está pensando?</h4>
+          <textarea class="new-post-textarea" placeholder="Escreva algo..."></textarea>
+
+          <div id="previewPostImageDisplay" style="display: none; position: relative; margin-top: 10px; border-radius: 8px; overflow: hidden; height: 160px; background: #FFE8EC;">
+            <img id="previewPostImageImg" src="" style="width: 100%; height: 100%; object-fit: cover;">
+            <button onclick="removePreviewPostImage()" style="position: absolute; top: 6px; right: 6px; background: #fff; border: none; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; color: #DF5268; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(0,0,0,0.2);">✕</button>
+          </div>
+
+          <div class="post-addons">
+            <span onclick="document.getElementById('previewPostImgInput').click()"><i class="fa-regular fa-image"></i> Imagem</span>
+            <span onclick="alert('Localização adicionada: São Paulo, SP')"><i class="fa-solid fa-location-dot"></i> Localização</span>
+            <span onclick="alert('Sentimento adicionado: 😄 Feliz')"><i class="fa-regular fa-face-smile"></i> Sentimento</span>
+          </div>
+        </div>
+
+        <button class="btn-solid-pink clickable" style="width: 60%; margin: 20px auto 0; display: block;" onclick="publishPreviewPost()">Publicar</button>
+      </div>
+
+      <div class="bottom-bar">
+        <div class="bar-item" onclick="switchScreen('feed')"><i class="fa-solid fa-house"></i><span>Início</span></div>
+        <div class="bar-item" onclick="switchScreen('navegacao')"><i class="fa-solid fa-magnifying-glass"></i><span>Buscar</span></div>
+        <div class="plus-btn clickable" onclick="switchScreen('nova-pub')"><i class="fa-solid fa-plus"></i></div>
+        <div class="bar-item" onclick="switchScreen('notificacoes')"><i class="fa-regular fa-bell"></i><span>Notificações</span></div>
+        <div class="bar-item" onclick="switchScreen('perfil')"><i class="fa-regular fa-user"></i><span>perfil</span></div>
+      </div>
+    </div>
+
+    <!-- 7. PERFIL -->
+    <div id="screen-perfil" class="screen-view">
+      <div class="app-header">
+        <i class="fa-solid fa-chevron-left clickable" style="font-size: 20px; color: #A33757;" onclick="switchScreen('feed')"></i>
+        <span class="header-title-center">Perfil</span>
+        <i class="fa-solid fa-gear clickable" style="font-size: 18px; color: #A33757;" onclick="switchScreen('editar-perfil')"></i>
+      </div>
+
+      <div style="flex: 1; overflow-y: auto;">
+        <div class="profile-hero">
+          <div class="profile-avatar-circle clickable" onclick="document.getElementById('previewAvatarImgInput').click()" title="Escolher foto da galeria">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80" alt="Leonardo Oliveira">
+            <div class="camera-badge clickable"><i class="fa-solid fa-camera"></i></div>
+          </div>
+          <h3 style="font-size: 16px; font-weight: 700; color: #111;">Leonardo Oliveira</h3>
+          <p style="font-size: 12px; color: #8E8E93;">@leo_00</p>
+
+          <div class="stats-flex">
+            <div class="stat-box"><div class="stat-val">12</div><div class="stat-label">publicações</div></div>
+            <div class="stat-box"><div class="stat-val">500</div><div class="stat-label">seguidores</div></div>
+            <div class="stat-box"><div class="stat-val">80</div><div class="stat-label">seguindo</div></div>
+          </div>
+
+          <div class="profile-bio clickable" onclick="switchScreen('editar-perfil')" title="Clique para editar sua bio">
+            Especialista em marketing digital.<br>Casado💍
+          </div>
+
+          <div class="profile-tabs">
+            <i class="fa-solid fa-table-cells clickable"></i>
+            <i class="fa-solid fa-bars clickable"></i>
+            <i class="fa-regular fa-bookmark clickable"></i>
+          </div>
+          <div class="profile-divider"></div>
+        </div>
+
+        <div class="profile-grid">
+          <div class="grid-box clickable" onclick="switchScreen('publicacao')">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80" alt="Praia">
+          </div>
+          <div class="grid-box clickable" onclick="switchScreen('publicacao')">
+            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&auto=format&fit=crop&q=80" alt="Café">
+          </div>
+          <div class="grid-box clickable" onclick="switchScreen('publicacao')">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=80" alt="Arquitetura">
+          </div>
+          <div class="grid-box clickable" onclick="switchScreen('publicacao')">
+            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=600&auto=format&fit=crop&q=80" alt="Pet">
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-bar">
+        <div class="bar-item" onclick="switchScreen('feed')"><i class="fa-solid fa-house"></i><span>Início</span></div>
+        <div class="bar-item" onclick="switchScreen('navegacao')"><i class="fa-solid fa-magnifying-glass"></i><span>Buscar</span></div>
+        <div class="plus-btn clickable" onclick="switchScreen('nova-pub')"><i class="fa-solid fa-plus"></i></div>
+        <div class="bar-item" onclick="switchScreen('notificacoes')"><i class="fa-regular fa-bell"></i><span>Notificações</span></div>
+        <div class="bar-item active" onclick="switchScreen('perfil')"><i class="fa-regular fa-user"></i><span>perfil</span></div>
+      </div>
+    </div>
+
+    <!-- 8. EDITAR PERFIL -->
+    <div id="screen-editar-perfil" class="screen-view">
+      <div class="app-header">
+        <i class="fa-solid fa-chevron-left clickable" style="font-size: 20px; color: #A33757;" onclick="switchScreen('perfil')"></i>
+        <span class="header-title-center">Editar Perfil</span>
+        <div style="width: 20px;"></div>
+      </div>
+
+      <div style="flex: 1; padding: 14px 24px; overflow-y: auto;">
+        <div class="profile-avatar-circle clickable" style="width: 104px; height: 104px;" onclick="document.getElementById('previewAvatarImgInput').click()" title="Escolher foto da galeria">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80" alt="Leonardo Oliveira">
+          <div class="camera-badge" style="width: 26px; height: 26px;"><i class="fa-solid fa-camera"></i></div>
+        </div>
+
+        <div class="field-group" style="margin-top: 14px;">
+          <label class="field-label">Nome</label>
+          <input type="text" class="field-input" value="Leonardo Oliveira">
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Usuário</label>
+          <input type="text" class="field-input" value="leo_00">
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Bio</label>
+          <textarea id="editBioTextarea" class="field-input" style="height: 70px; padding: 8px;" resize="none">Especialista em marketing digital.
+Casado💍</textarea>
+        </div>
+
+        <button class="btn-solid-pink clickable" style="margin-top: 20px;" onclick="saveProfileEdit()">Salvar Alterações</button>
+      </div>
+
+      <div class="bottom-bar">
+        <div class="bar-item" onclick="switchScreen('feed')"><i class="fa-solid fa-house"></i><span>Início</span></div>
+        <div class="bar-item" onclick="switchScreen('navegacao')"><i class="fa-solid fa-magnifying-glass"></i><span>Buscar</span></div>
+        <div class="plus-btn clickable" onclick="switchScreen('nova-pub')"><i class="fa-solid fa-plus"></i></div>
+        <div class="bar-item" onclick="switchScreen('notificacoes')"><i class="fa-regular fa-bell"></i><span>Notificações</span></div>
+        <div class="bar-item active" onclick="switchScreen('perfil')"><i class="fa-regular fa-user"></i><span>perfil</span></div>
+      </div>
+    </div>
+
+    <!-- 9. NAVEGAÇÃO -->
+    <div id="screen-navegacao" class="screen-view">
+      <div class="app-header">
+        <i class="fa-solid fa-chevron-left clickable" style="font-size: 20px; color: #A33757;" onclick="switchScreen('feed')"></i>
+        <span class="header-title-center">Navegação</span>
+        <div style="width: 20px;"></div>
+      </div>
+
+      <div style="flex: 1; padding: 10px 20px; overflow-y: auto;">
+        <p style="text-align: center; font-size: 13px; color: #615E5E; line-height: 18px; margin-bottom: 18px; font-weight: 500;">
+          A navegação principal do app na<br>barra inferior, através dos ícones.
+        </p>
+
+        <div class="nav-card-item clickable" onclick="switchScreen('feed')">
+          <i class="fa-solid fa-house" style="font-size: 22px; color: #A33757;"></i>
+          <div>
+            <div class="nav-card-title">Início</div>
+            <div class="nav-card-desc">Feed de publicações</div>
+          </div>
+        </div>
+
+        <div class="nav-card-item clickable" onclick="switchScreen('navegacao')">
+          <i class="fa-solid fa-magnifying-glass" style="font-size: 22px; color: #A33757;"></i>
+          <div>
+            <div class="nav-card-title">Buscar</div>
+            <div class="nav-card-desc">Procurar pessoas e conteúdo</div>
+          </div>
+        </div>
+
+        <div class="nav-card-item clickable" onclick="switchScreen('nova-pub')">
+          <i class="fa-regular fa-square-plus" style="font-size: 22px; color: #A33757;"></i>
+          <div>
+            <div class="nav-card-title">Criar</div>
+            <div class="nav-card-desc">Criar nova publicação</div>
+          </div>
+        </div>
+
+        <div class="nav-card-item clickable" onclick="switchScreen('notificacoes')">
+          <i class="fa-regular fa-bell" style="font-size: 22px; color: #A33757;"></i>
+          <div>
+            <div class="nav-card-title">Notificações</div>
+            <div class="nav-card-desc">Ver interações e atividades</div>
+          </div>
+        </div>
+
+        <div class="nav-card-item clickable" onclick="switchScreen('perfil')">
+          <i class="fa-regular fa-user" style="font-size: 22px; color: #A33757;"></i>
+          <div>
+            <div class="nav-card-title">Perfil</div>
+            <div class="nav-card-desc">Visualizar e editar perfil</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-bar">
+        <div class="bar-item" onclick="switchScreen('feed')"><i class="fa-solid fa-house"></i><span>Início</span></div>
+        <div class="bar-item active" onclick="switchScreen('navegacao')"><i class="fa-solid fa-magnifying-glass"></i><span>Buscar</span></div>
+        <div class="plus-btn clickable" onclick="switchScreen('nova-pub')"><i class="fa-solid fa-plus"></i></div>
+        <div class="bar-item" onclick="switchScreen('notificacoes')"><i class="fa-regular fa-bell"></i><span>Notificações</span></div>
+        <div class="bar-item" onclick="switchScreen('perfil')"><i class="fa-regular fa-user"></i><span>perfil</span></div>
+      </div>
+    </div>
+
+    <!-- 10. NOTIFICAÇÕES -->
+    <div id="screen-notificacoes" class="screen-view">
+      <div class="app-header">
+        <i class="fa-solid fa-chevron-left clickable" style="font-size: 20px; color: #A33757;" onclick="switchScreen('feed')"></i>
+        <span class="header-title-center">Notificações</span>
+        <div style="width: 20px;"></div>
+      </div>
+
+      <div style="flex: 1; padding: 12px 18px; overflow-y: auto;">
+        <!-- Notif 1 -->
+        <div class="notif-card clickable" onclick="switchScreen('publicacao')">
+          <div class="notif-icon-circle"><i class="fa-solid fa-heart"></i></div>
+          <div class="notif-content">
+            <strong style="color: #DC586D;">Milena</strong> Curtiu sua publicação.
+            <div class="notif-time">5m</div>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color: #DC586D; font-size: 14px;"></i>
+        </div>
+
+        <!-- Notif 2 -->
+        <div class="notif-card clickable" onclick="switchScreen('publicacao')">
+          <div class="notif-icon-circle"><i class="fa-solid fa-heart"></i></div>
+          <div class="notif-content">
+            <strong style="color: #DC586D;">Lili_00</strong> Curtiu sua publicação
+            <div class="notif-time">10min</div>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color: #DC586D; font-size: 14px;"></i>
+        </div>
+
+        <!-- Notif 3 -->
+        <div class="notif-card clickable" onclick="switchScreen('perfil')">
+          <div class="notif-icon-circle"><i class="fa-solid fa-user"></i></div>
+          <div class="notif-content">
+            <strong style="color: #DC586D;">Clefairy</strong> Começou a seguir voce
+            <div class="notif-time">1hr</div>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color: #DC586D; font-size: 14px;"></i>
+        </div>
+
+        <!-- Notif 4 -->
+        <div class="notif-card clickable" onclick="switchScreen('publicacao')">
+          <div class="notif-icon-circle"><i class="fa-solid fa-heart"></i></div>
+          <div class="notif-content">
+            <strong style="color: #DC586D;">Clefairy</strong> Curtiu sua publicação.
+            <div class="notif-time">1hr</div>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color: #DC586D; font-size: 14px;"></i>
+        </div>
+
+        <!-- Notif 5 -->
+        <div class="notif-card clickable" onclick="switchScreen('publicacao')">
+          <div class="notif-icon-circle"><i class="fa-solid fa-heart"></i></div>
+          <div class="notif-content">
+            <strong style="color: #DC586D;">Ronaldo</strong> Curtiu sua publicação.
+            <div class="notif-time">1hr</div>
+          </div>
+          <i class="fa-solid fa-chevron-right" style="color: #DC586D; font-size: 14px;"></i>
+        </div>
+      </div>
+
+      <div class="bottom-bar">
+        <div class="bar-item" onclick="switchScreen('feed')"><i class="fa-solid fa-house"></i><span>Início</span></div>
+        <div class="bar-item" onclick="switchScreen('navegacao')"><i class="fa-solid fa-magnifying-glass"></i><span>Buscar</span></div>
+        <div class="plus-btn clickable" onclick="switchScreen('nova-pub')"><i class="fa-solid fa-plus"></i></div>
+        <div class="bar-item active" onclick="switchScreen('notificacoes')"><i class="fa-regular fa-bell"></i><span>Notificações</span></div>
+        <div class="bar-item" onclick="switchScreen('perfil')"><i class="fa-regular fa-user"></i><span>perfil</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inputs ocultos para carregar fotos da galeria / arquivos -->
+  <input type="file" id="previewPostImgInput" accept="image/*" style="display:none;" onchange="handlePreviewPostImage(event)">
+  <input type="file" id="previewAvatarImgInput" accept="image/*" style="display:none;" onchange="handlePreviewAvatarImage(event)">
+
+  <script>
+    const screenMap = {
+      'inicial': { id: 'screen-inicial', pillIdx: 0 },
+      'login': { id: 'screen-login', pillIdx: 1 },
+      'criar-conta': { id: 'screen-criar-conta', pillIdx: 2 },
+      'feed': { id: 'screen-feed', pillIdx: 3 },
+      'publicacao': { id: 'screen-publicacao', pillIdx: 4 },
+      'nova-pub': { id: 'screen-nova-pub', pillIdx: 5 },
+      'perfil': { id: 'screen-perfil', pillIdx: 6 },
+      'editar-perfil': { id: 'screen-editar-perfil', pillIdx: 7 },
+      'navegacao': { id: 'screen-navegacao', pillIdx: 8 },
+      'notificacoes': { id: 'screen-notificacoes', pillIdx: 9 }
+    };
+
+    let currentAvatarUrl = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80';
+    let selectedPostImage = null;
+
+    function handlePreviewAvatarImage(e) {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        currentAvatarUrl = evt.target.result;
+        document.querySelectorAll('.profile-avatar-circle img').forEach(img => {
+          img.src = currentAvatarUrl;
+        });
+        alert('Foto de perfil atualizada com sucesso com a imagem escolhida da galeria!');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handlePreviewPostImage(e) {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        selectedPostImage = evt.target.result;
+        const previewEl = document.getElementById('previewPostImageDisplay');
+        const imgEl = document.getElementById('previewPostImageImg');
+        if (previewEl && imgEl) {
+          imgEl.src = selectedPostImage;
+          previewEl.style.display = 'block';
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removePreviewPostImage() {
+      selectedPostImage = null;
+      const previewEl = document.getElementById('previewPostImageDisplay');
+      if (previewEl) previewEl.style.display = 'none';
+      const input = document.getElementById('previewPostImgInput');
+      if (input) input.value = '';
+    }
+
+    function publishPreviewPost() {
+      const textarea = document.querySelector('.new-post-textarea');
+      const text = textarea ? textarea.value.trim() : '';
+      if (!text && !selectedPostImage) {
+        alert('Escreva algo ou selecione uma imagem para publicar!');
+        return;
+      }
+
+      const feedScroll = document.querySelector('#screen-feed .feed-scroll');
+      if (feedScroll) {
+        const postCard = document.createElement('div');
+        postCard.className = 'post-card';
+        postCard.innerHTML = `
+          <div class="post-user clickable" onclick="switchScreen('perfil')">
+            <div class="avatar-circle-sm">
+              <img src="${currentAvatarUrl}" alt="leo_00">
+            </div>
+            <span class="post-username">leo_00</span>
+          </div>
+          <div class="post-body clickable" onclick="switchScreen('publicacao')">
+            ${text || 'Nova foto compartilhada'}
+          </div>
+          ${selectedPostImage ? `<img src="${selectedPostImage}" class="post-photo clickable" onclick="switchScreen('publicacao')" alt="Foto publicada">` : ''}
+          <div class="post-actions">
+            <div class="action-group">
+              <div class="action-item"><i class="fa-regular fa-heart" style="color: #DE5169;"></i> 0</div>
+              <div class="action-item clickable" onclick="switchScreen('publicacao')"><i class="fa-regular fa-comment"></i> 0</div>
+            </div>
+            <i class="fa-regular fa-bookmark"></i>
+          </div>
+        `;
+        feedScroll.insertBefore(postCard, feedScroll.firstChild);
+      }
+
+      if (textarea) textarea.value = '';
+      removePreviewPostImage();
+      alert('Publicação compartilhada com sucesso no Feed!');
+      switchScreen('feed');
+    }
+
+    function saveProfileEdit() {
+      const bioTextarea = document.getElementById('editBioTextarea');
+      if (bioTextarea) {
+        const newBio = bioTextarea.value.trim();
+        const bioEl = document.querySelector('.profile-bio');
+        if (bioEl) {
+          bioEl.innerHTML = newBio ? newBio.replace(/\n/g, '<br>') : 'Oi, bem vindos ao meu Perfil';
+        }
+      }
+      alert('Perfil e biografia atualizados com sucesso!');
+      switchScreen('perfil');
+    }
+
+    function switchScreen(key) {
+      const target = screenMap[key];
+      if (!target) return;
+
+      document.querySelectorAll('.screen-view').forEach(el => el.classList.remove('active'));
+      const el = document.getElementById(target.id);
+      if (el) el.classList.add('active');
+
+      const pills = document.querySelectorAll('.pill-btn');
+      pills.forEach((p, idx) => {
+        if (idx === target.pillIdx) {
+          p.classList.add('active');
+        } else {
+          p.classList.remove('active');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
