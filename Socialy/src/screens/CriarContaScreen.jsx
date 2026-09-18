@@ -12,41 +12,75 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import { useNavigation } from '../context/NavigationContext';
+import { api } from '../services/api';
 import { colors } from '../theme/colors';
 
 export default function CriarContaScreen() {
-  const { navigate, setUserProfile } = useNavigation();
-  const [name, setName] = useState('');
+  const { navigate, setCurrentUser } = useNavigation();
+  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [senha, setSenha] = useState('');
+  const [carregando, setCarregando] = useState(false);
 
-  const handleRegister = () => {
-    if (name.trim()) {
-      setUserProfile((prev) => ({
-        ...prev,
-        name: name.trim(),
-      }));
+  // Função para validar campos e registrar novo usuário
+  const realizarCadastro = async () => {
+    const nomeFormatado = nome.trim();
+    const emailFormatado = email.trim();
+
+    if (!nomeFormatado || !emailFormatado || !senha) {
+      Alert.alert('Campos Obrigatórios', 'Por favor, preencha nome, e-mail e senha.');
+      return;
     }
-    // Sucesso e redirecionamento para o feed
-    navigate('Feed');
+
+    if (!emailFormatado.includes('@') || !emailFormatado.includes('.')) {
+      Alert.alert('E-mail Inválido', 'Por favor, insira um endereço de e-mail válido.');
+      return;
+    }
+
+    if (senha.length < 3) {
+      Alert.alert('Senha Curta', 'A senha deve conter no mínimo 3 caracteres.');
+      return;
+    }
+
+    try {
+      setCarregando(true);
+      const novoUsuario = await api.registerUser({
+        name: nomeFormatado,
+        email: emailFormatado,
+        password: senha,
+      });
+
+      setCurrentUser(novoUsuario);
+      Alert.alert('Sucesso!', `Bem-vindo(a) ao Socialy, ${novoUsuario.name}!`, [
+        {
+          text: 'Começar',
+          onPress: () => navigate('Feed'),
+        },
+      ]);
+    } catch (erro) {
+      Alert.alert('Não foi possível cadastrar', erro.message || 'Verifique sua conexão com a API.');
+    } finally {
+      setCarregando(false);
+    }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFE9E8" />
       <KeyboardAvoidingView
-        style={styles.keyboardContainer}
+        style={styles.tecladoContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         <ScrollView
-          contentContainerStyle={styles.scrollContent}
+          contentContainerStyle={styles.conteudoRolagem}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
-          {/* Card Criar Conta */}
-          <View style={styles.card}>
+          {/* Cartão de Cadastro */}
+          <View style={styles.cartao}>
             {/* Logo */}
             <Image
               source={require('../../assets/logo.png')}
@@ -59,23 +93,23 @@ export default function CriarContaScreen() {
 
             {/* Formulário */}
             <View style={styles.formulario}>
-              {/* Nome Completo */}
+              {/* Campo Nome */}
               <View style={styles.campo}>
-                <Text style={styles.label}>Nome Completo</Text>
+                <Text style={styles.rotulo}>Nome Completo</Text>
                 <TextInput
-                  style={styles.input}
+                  style={styles.campoTexto}
                   placeholder="Digite seu nome"
                   placeholderTextColor="#999"
-                  value={name}
-                  onChangeText={setName}
+                  value={nome}
+                  onChangeText={setNome}
                 />
               </View>
 
-              {/* E-mail */}
+              {/* Campo E-mail */}
               <View style={styles.campo}>
-                <Text style={styles.label}>E-mail</Text>
+                <Text style={styles.rotulo}>E-mail</Text>
                 <TextInput
-                  style={styles.input}
+                  style={styles.campoTexto}
                   placeholder="Ex:Email@email.com"
                   placeholderTextColor="#999"
                   keyboardType="email-address"
@@ -85,38 +119,43 @@ export default function CriarContaScreen() {
                 />
               </View>
 
-              {/* Senha */}
+              {/* Campo Senha */}
               <View style={styles.campo}>
-                <Text style={styles.label}>Senha</Text>
+                <Text style={styles.rotulo}>Senha</Text>
                 <TextInput
-                  style={styles.input}
+                  style={styles.campoTexto}
                   placeholder="Digite sua senha"
                   placeholderTextColor="#999"
                   secureTextEntry
-                  value={password}
-                  onChangeText={setPassword}
+                  value={senha}
+                  onChangeText={setSenha}
                 />
               </View>
             </View>
           </View>
 
-          {/* Botão Entrar (Cadastrar) */}
+          {/* Botão Criar Conta */}
           <TouchableOpacity
-            style={styles.botao}
-            onPress={handleRegister}
+            style={[styles.botaoCadastrar, carregando && { opacity: 0.7 }]}
+            onPress={realizarCadastro}
             activeOpacity={0.85}
+            disabled={carregando}
           >
-            <Text style={styles.textoBotao}>Entrar</Text>
+            {carregando ? (
+              <ActivityIndicator color="#FFFFFF" size="small" />
+            ) : (
+              <Text style={styles.textoBotaoCadastrar}>Criar Conta</Text>
+            )}
           </TouchableOpacity>
 
-          {/* Rodapé: Já tem uma conta? Entrar */}
-          <View style={styles.loginContainer}>
-            <Text style={styles.textoLogin}>Já tem uma conta?</Text>
+          {/* Rodapé: Link para tela de Login */}
+          <View style={styles.rodapeLoginContainer}>
+            <Text style={styles.textoJaTemConta}>Já tem uma conta?</Text>
             <TouchableOpacity
               onPress={() => navigate('Login')}
               activeOpacity={0.7}
             >
-              <Text style={styles.linkLogin}>Entrar</Text>
+              <Text style={styles.linkEntrar}>Entrar</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -130,10 +169,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFE9E8',
   },
-  keyboardContainer: {
+  tecladoContainer: {
     flex: 1,
   },
-  scrollContent: {
+  conteudoRolagem: {
     paddingHorizontal: 16,
     paddingTop: 30,
     paddingBottom: 30,
@@ -141,7 +180,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     minHeight: '100%',
   },
-  card: {
+  cartao: {
     width: '94%',
     maxWidth: 380,
     backgroundColor: '#FFF7F7',
@@ -177,13 +216,13 @@ const styles = StyleSheet.create({
   campo: {
     width: '100%',
   },
-  label: {
+  rotulo: {
     fontSize: 12,
     fontWeight: '600',
     color: '#111111',
     marginBottom: 6,
   },
-  input: {
+  campoTexto: {
     width: '100%',
     height: 42,
     borderWidth: 1,
@@ -195,7 +234,7 @@ const styles = StyleSheet.create({
     color: '#111111',
     ...(Platform.OS === 'web' ? { outlineStyle: 'none', outlineWidth: 0 } : {}),
   },
-  botao: {
+  botaoCadastrar: {
     width: '58%',
     maxWidth: 240,
     height: 48,
@@ -210,23 +249,23 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 3,
   },
-  textoBotao: {
+  textoBotaoCadastrar: {
     color: '#FFFFFF',
     fontSize: 14,
     fontWeight: 'bold',
   },
-  loginContainer: {
+  rodapeLoginContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 22,
   },
-  textoLogin: {
+  textoJaTemConta: {
     fontSize: 12,
     fontWeight: '600',
     color: '#111111',
   },
-  linkLogin: {
+  linkEntrar: {
     marginLeft: 8,
     fontSize: 12,
     fontWeight: '700',

@@ -1,12 +1,16 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { api } from '../services/api';
 
 const NavigationContext = createContext(null);
 
 export function NavigationProvider({ children }) {
   // Histórico de navegação para permitir voltar perfeitamente
   const [history, setHistory] = useState([{ screen: 'TelaInicial', params: {} }]);
-  
-  // Estado global do perfil do usuário
+
+  // Usuário atualmente autenticado
+  const [currentUser, setCurrentUser] = useState(null);
+
+  // Estado global do perfil do usuário exibido no app
   const [userProfile, setUserProfile] = useState({
     name: 'Leonardo Oliveira',
     username: 'leo_00',
@@ -28,6 +32,7 @@ export function NavigationProvider({ children }) {
       avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80',
       content: 'Tipo eh tipo uh tipo nd aver',
       image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&auto=format&fit=crop&q=80',
+      location: 'São Paulo, SP',
       likes: 301,
       comments: 33,
       isLiked: false,
@@ -40,6 +45,7 @@ export function NavigationProvider({ children }) {
       avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&auto=format&fit=crop&q=80',
       content: 'Minhas roupas estão secando no varal já tem 3 dias e nada!!!!!',
       image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80',
+      location: 'Rio de Janeiro, RJ',
       likes: 502,
       comments: 502,
       isLiked: false,
@@ -52,6 +58,7 @@ export function NavigationProvider({ children }) {
       avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=80',
       content: 'Frank Ocean volta nunca?',
       image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80',
+      location: null,
       likes: 101,
       comments: 11,
       isLiked: false,
@@ -59,6 +66,39 @@ export function NavigationProvider({ children }) {
       time: 'hoje às 10:15',
     },
   ]);
+
+  // Sincroniza dados da Fake API (json-server) ao inicializar
+  useEffect(() => {
+    let isMounted = true;
+    const syncFromApi = async () => {
+      try {
+        const [remotePosts, remoteProfile, remoteNotifs] = await Promise.all([
+          api.getPosts(),
+          api.getProfile(),
+          api.getNotifications(),
+        ]);
+
+        if (isMounted) {
+          if (remotePosts && remotePosts.length > 0) {
+            setFeedPosts(remotePosts);
+          }
+          if (remoteProfile) {
+            setUserProfile(remoteProfile);
+          }
+          if (remoteNotifs && remoteNotifs.length > 0) {
+            setNotifications(remoteNotifs);
+          }
+        }
+      } catch (err) {
+        console.warn('Erro ao carregar dados da API:', err);
+      }
+    };
+
+    syncFromApi();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Publicação em destaque (tela Publicação)
   const [selectedPost, setSelectedPost] = useState({
@@ -68,6 +108,7 @@ export function NavigationProvider({ children }) {
     time: 'hoje as 14:09',
     text: 'Viajando com minha família!!',
     image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&auto=format&fit=crop&q=80',
+    location: 'Florianópolis, SC',
     likes: 23,
     commentsCount: 4,
     isLiked: true,
@@ -147,14 +188,52 @@ export function NavigationProvider({ children }) {
     setHistory([{ screen, params }]);
   };
 
-  // Funções de atualização do Feed
-  const addFeedPost = (content, image = null) => {
+  const handleSetCurrentUser = (user) => {
+    setCurrentUser(user);
+    if (user) {
+      setUserProfile((prev) => ({
+        ...prev,
+        id: user.id,
+        name: user.name || prev.name,
+        username: user.username || prev.username,
+        bio: user.bio !== undefined ? user.bio : prev.bio,
+        bioEdit: user.bio !== undefined ? user.bio : prev.bioEdit,
+        avatar: user.avatar || prev.avatar,
+        stats: user.stats || prev.stats,
+      }));
+    }
+  };
+
+  const logout = () => {
+    setCurrentUser(null);
+    reset('TelaInicial');
+  };
+
+  // Funções de atualização do Perfil sincronizadas com a API
+  const updateUserProfile = (updater) => {
+    setUserProfile((prev) => {
+      const updated = typeof updater === 'function' ? updater(prev) : { ...prev, ...updater };
+      api.updateProfile(updated);
+      if (currentUser && currentUser.id) {
+        api.updateUser(currentUser.id, updated);
+      }
+      return updated;
+    });
+  };
+
+  // Funções de atualização do Feed sincronizadas com a API
+  const addFeedPost = async (content, image = null, location = null, coords = null) => {
+    const tempId = Date.now().toString();
     const newPost = {
-      id: Date.now().toString(),
+      id: tempId,
       user: userProfile.username,
       avatar: userProfile.avatar,
       content,
       image,
+      location,
+      latitude: coords?.latitude ?? null,
+      longitude: coords?.longitude ?? null,
+      coords: coords ? { latitude: coords.latitude, longitude: coords.longitude } : null,
       likes: 0,
       comments: 0,
       isLiked: false,
@@ -162,24 +241,124 @@ export function NavigationProvider({ children }) {
       time: 'agora mesmo',
     };
     setFeedPosts((prev) => [newPost, ...prev]);
+
+    // Sincroniza o ID permanente gerado pelo json-server
+    try {
+      const serverPost = await api.createPost(newPost);
+      if (serverPost && serverPost.id && serverPost.id !== tempId) {
+        setFeedPosts((prev) =>
+          prev.map((p) => (p.id === tempId ? { ...p, id: serverPost.id } : p))
+        );
+      }
+    } catch (err) {
+      console.warn('Erro ao sincronizar ID do post com a API:', err);
+    }
+  };
+
+  // Função para criar e persistir notificação na API
+  const addNotification = (notif) => {
+    const newNotif = {
+      id: Date.now().toString(),
+      time: 'agora mesmo',
+      type: 'heart',
+      ...notif,
+    };
+    setNotifications((prev) => [newNotif, ...prev]);
+    api.createNotification(newNotif);
   };
 
   const toggleLikeFeedPost = (postId) => {
+    let likedPost = null;
+    let willBeLiked = false;
+
     setFeedPosts((prev) =>
       prev.map((p) => {
         if (p.id === postId) {
-          const isLiked = !p.isLiked;
-          return { ...p, isLiked, likes: isLiked ? p.likes + 1 : p.likes - 1 };
+          willBeLiked = !p.isLiked;
+          likedPost = p;
+          const updatedLikes = willBeLiked ? p.likes + 1 : p.likes - 1;
+          api.updatePost(postId, { isLiked: willBeLiked, likes: updatedLikes });
+          return { ...p, isLiked: willBeLiked, likes: updatedLikes };
+        }
+        return p;
+      })
+    );
+
+    // Se acabou de curtir a publicação, gera notificação adequada na Fake API
+    if (willBeLiked && likedPost) {
+      const isMyOwnPost = likedPost.user === userProfile.username;
+      if (isMyOwnPost) {
+        // Se a publicação é sua, gera notificação de um seguidor/amigo que curtiu seu post
+        const sampleUsers = ['Milena', 'Bia', 'Lili_00', 'Clefairy', 'Ronaldo'];
+        const randomUser = sampleUsers[Math.floor(Math.random() * sampleUsers.length)];
+        addNotification({
+          user: randomUser,
+          action: 'curtiu sua publicação.',
+          targetPostId: postId,
+        });
+      }
+    }
+  };
+
+  const toggleBookmarkFeedPost = (postId) => {
+    setFeedPosts((prev) =>
+      prev.map((p) => {
+        if (p.id === postId) {
+          const isBookmarked = !p.isBookmarked;
+          api.updatePost(postId, { isBookmarked });
+          return { ...p, isBookmarked };
         }
         return p;
       })
     );
   };
 
-  const toggleBookmarkFeedPost = (postId) => {
+  // Função para adicionar e persistir comentário na publicação
+  const addCommentToPost = async (postId, text) => {
+    if (!text || !text.trim()) return;
+
+    const newComment = {
+      id: Date.now().toString(),
+      author: userProfile.name || 'Usuário',
+      authorAvatar: userProfile.avatar || null,
+      time: 'agora mesmo',
+      text: text.trim(),
+    };
+
+    setSelectedPost((prev) => {
+      if (!prev) return prev;
+      const currentList = prev.commentsList || prev.comments || [];
+      const updatedList = [...currentList, newComment];
+      return {
+        ...prev,
+        commentsCount: (prev.commentsCount || 0) + 1,
+        comments: updatedList,
+        commentsList: updatedList,
+      };
+    });
+
     setFeedPosts((prev) =>
-      prev.map((p) => (p.id === postId ? { ...p, isBookmarked: !p.isBookmarked } : p))
+      prev.map((p) => {
+        if (String(p.id) === String(postId)) {
+          const currentList = p.commentsList || [];
+          const updatedList = [...currentList, newComment];
+          return {
+            ...p,
+            comments: (p.comments || 0) + 1,
+            commentsList: updatedList,
+          };
+        }
+        return p;
+      })
     );
+
+    try {
+      await api.addComment(postId, newComment);
+    } catch (err) {
+      console.warn('Erro ao salvar comentário na API:', err);
+    }
+
+    return newComment;
   };
 
   return (
@@ -190,15 +369,26 @@ export function NavigationProvider({ children }) {
         navigate,
         goBack,
         reset,
+        currentUser,
+        setCurrentUser: handleSetCurrentUser,
+        logout,
         userProfile,
-        setUserProfile,
+        setUserProfile: updateUserProfile,
         feedPosts,
+        publicacoesFeed: feedPosts,
         addFeedPost,
         toggleLikeFeedPost,
+        curtirPublicacao: toggleLikeFeedPost,
         toggleBookmarkFeedPost,
+        salvarPublicacao: toggleBookmarkFeedPost,
         selectedPost,
+        publicacaoSelecionada: selectedPost,
         setSelectedPost,
+        definirPublicacaoSelecionada: setSelectedPost,
+        addCommentToPost,
+        adicionarComentario: addCommentToPost,
         notifications,
+        addNotification,
       }}
     >
       {children}

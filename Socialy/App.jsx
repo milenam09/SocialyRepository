@@ -3,7 +3,6 @@ import { View, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationProvider, useNavigation } from './src/context/NavigationContext';
 
-// Importação das 10 Telas em JSX
 import TelaInicialScreen from './src/screens/TelaInicialScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import CriarContaScreen from './src/screens/CriarContaScreen';
@@ -18,7 +17,6 @@ import NotificacoesScreen from './src/screens/NotificacoesScreen';
 function MainApp() {
   const { currentScreen } = useNavigation();
 
-  // Renderização da tela ativa conforme navegação
   const renderCurrentScreen = () => {
     switch (currentScreen) {
       case 'TelaInicial':

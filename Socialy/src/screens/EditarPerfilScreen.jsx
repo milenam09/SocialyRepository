@@ -20,28 +20,63 @@ import BottomNavBar from '../components/BottomNavBar';
 import { colors } from '../theme/colors';
 
 export default function EditarPerfilScreen() {
-  const { userProfile, setUserProfile, goBack, navigate } = useNavigation();
+  const { userProfile, setUserProfile, goBack, navigate, logout } = useNavigation();
 
-  const [name, setName] = useState(userProfile.name);
-  const [username, setUsername] = useState(userProfile.username);
-  const [bio, setBio] = useState(userProfile.bio || userProfile.bioEdit || 'Especialista em marketing digital.\nCasado💍');
-  const [avatarUri, setAvatarUri] = useState(userProfile.avatar);
+  const [nome, setNome] = useState(userProfile.name);
+  const [usuario, setUsuario] = useState(userProfile.username);
+  const [biografia, setBiografia] = useState(
+    userProfile.bio || userProfile.bioEdit || 'Especialista em marketing digital.\nCasado💍'
+  );
+  const [uriAvatar, setUriAvatar] = useState(userProfile.avatar);
 
-  const handleSave = () => {
+  // Função para salvar as alterações do perfil
+  const salvarAlteracoes = () => {
     setUserProfile((prev) => ({
       ...prev,
-      name,
-      username,
-      bio: bio,
-      bioEdit: bio,
-      avatar: avatarUri,
+      name: nome,
+      username: usuario,
+      bio: biografia,
+      bioEdit: biografia,
+      avatar: uriAvatar,
     }));
     Alert.alert('Sucesso', 'Perfil e bio atualizados com sucesso!', [
       { text: 'OK', onPress: () => navigate('Perfil') },
     ]);
   };
 
-  const handlePickAvatar = async () => {
+  // Função para tirar foto com a câmera
+  const tirarFotoCamera = async () => {
+    try {
+      const { status } = await ImagePicker.requestCameraPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert(
+          'Permissão da Câmera necessária',
+          'Precisamos de permissão para acessar sua câmera e tirar sua foto de perfil.'
+        );
+        return;
+      }
+
+      const resultado = await ImagePicker.launchCameraAsync({
+        mediaTypes: ['images'],
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 0.85,
+      });
+
+      if (!resultado.canceled && resultado.assets && resultado.assets.length > 0) {
+        const fotoTirada = resultado.assets[0].uri;
+        setUriAvatar(fotoTirada);
+        setUserProfile((prev) => ({ ...prev, avatar: fotoTirada }));
+        Alert.alert('Sucesso!', 'Nova foto capturada pela câmera com sucesso!');
+      }
+    } catch (erro) {
+      console.error('Erro ao abrir câmera:', erro);
+      Alert.alert('Erro na Câmera', 'Não foi possível inicializar a câmera do dispositivo.');
+    }
+  };
+
+  // Função para escolher foto da galeria
+  const escolherFotoGaleria = async () => {
     try {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (status !== 'granted') {
@@ -52,104 +87,133 @@ export default function EditarPerfilScreen() {
         return;
       }
 
-      const result = await ImagePicker.launchImageLibraryAsync({
+      const resultado = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ['images'],
         allowsEditing: true,
         aspect: [1, 1],
         quality: 0.85,
       });
 
-      if (!result.canceled && result.assets && result.assets.length > 0) {
-        const picked = result.assets[0].uri;
-        setAvatarUri(picked);
-        setUserProfile((prev) => ({ ...prev, avatar: picked }));
+      if (!resultado.canceled && resultado.assets && resultado.assets.length > 0) {
+        const fotoEscolhida = resultado.assets[0].uri;
+        setUriAvatar(fotoEscolhida);
+        setUserProfile((prev) => ({ ...prev, avatar: fotoEscolhida }));
         Alert.alert('Foto selecionada', 'Nova foto de perfil carregada da galeria!');
       }
-    } catch (err) {
-      console.error('Erro ao escolher avatar:', err);
+    } catch (erro) {
+      console.error('Erro ao escolher avatar:', erro);
       Alert.alert('Erro', 'Não foi possível acessar a galeria de fotos.');
     }
+  };
+
+  // Diálogo para escolher entre câmera ou galeria
+  const alterarFotoPerfil = () => {
+    Alert.alert('Alterar Foto de Perfil', 'Como deseja definir sua nova foto de perfil?', [
+      {
+        text: '📸 Tirar Foto Agora (Câmera)',
+        onPress: tirarFotoCamera,
+      },
+      {
+        text: '🖼️ Escolher da Galeria',
+        onPress: escolherFotoGaleria,
+      },
+      {
+        text: 'Cancelar',
+        style: 'cancel',
+      },
+    ]);
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFE9E8" />
       <KeyboardAvoidingView
-        style={styles.keyboardContainer}
+        style={styles.tecladoContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         {/* Cabeçalho */}
-        <View style={styles.header}>
+        <View style={styles.cabecalho}>
           <TouchableOpacity
             onPress={goBack}
             activeOpacity={0.7}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            style={styles.backButton}
+            style={styles.botaoVoltar}
           >
             <Ionicons name="chevron-back" size={30} color="#A33757" />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>Editar Perfil</Text>
-          <View style={styles.headerSpacer} />
+          <Text style={styles.tituloCabecalho}>Editar Perfil</Text>
+          <View style={styles.espacadorCabecalho} />
         </View>
 
         <ScrollView
-          contentContainerStyle={styles.scrollContent}
+          contentContainerStyle={styles.conteudoRolagem}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
-          {/* Avatar com Borda Rosa e Badge de Câmera */}
-          <View style={styles.avatarSection}>
+          {/* Seção do Avatar */}
+          <View style={styles.secaoAvatar}>
             <TouchableOpacity
-              onPress={handlePickAvatar}
+              onPress={alterarFotoPerfil}
               activeOpacity={0.85}
-              style={styles.avatarCircle}
+              style={styles.circuloAvatar}
             >
-              {(avatarUri || userProfile.avatar) ? (
-                <Image source={{ uri: avatarUri || userProfile.avatar }} style={styles.avatarImage} />
+              {uriAvatar || userProfile.avatar ? (
+                <Image
+                  source={{ uri: uriAvatar || userProfile.avatar }}
+                  style={styles.imagemAvatar}
+                />
               ) : (
-                <View style={styles.avatarPlaceholder} />
+                <View style={styles.marcadorAvatar} />
               )}
 
-              <View style={styles.cameraBadge}>
-                <Ionicons name="camera" size={16} color="#A33757" />
+              <View style={styles.distintivoCamera}>
+                <Ionicons name="camera" size={16} color="#F0435F" />
               </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={alterarFotoPerfil}
+              activeOpacity={0.7}
+              style={styles.botaoAlterarFoto}
+            >
+              <Text style={styles.textoAlterarFoto}>Alterar foto de perfil</Text>
             </TouchableOpacity>
           </View>
 
-          {/* Formulário */}
-          <View style={styles.formContainer}>
+          {/* Formulário de Edição */}
+          <View style={styles.formularioContainer}>
             {/* Campo Nome */}
-            <View style={styles.fieldGroup}>
-              <Text style={styles.label}>Nome</Text>
+            <View style={styles.grupoCampo}>
+              <Text style={styles.rotulo}>Nome</Text>
               <TextInput
-                style={styles.input}
-                value={name}
-                onChangeText={setName}
+                style={styles.campoTexto}
+                value={nome}
+                onChangeText={setNome}
                 placeholder="Leonardo Oliveira"
                 placeholderTextColor="#999"
               />
             </View>
 
             {/* Campo Usuário */}
-            <View style={styles.fieldGroup}>
-              <Text style={styles.label}>Usuário</Text>
+            <View style={styles.grupoCampo}>
+              <Text style={styles.rotulo}>Usuário</Text>
               <TextInput
-                style={styles.input}
-                value={username}
-                onChangeText={setUsername}
+                style={styles.campoTexto}
+                value={usuario}
+                onChangeText={setUsuario}
                 placeholder="leo_00"
                 placeholderTextColor="#999"
                 autoCapitalize="none"
               />
             </View>
 
-            {/* Campo Bio */}
-            <View style={styles.fieldGroup}>
-              <Text style={styles.label}>Bio</Text>
+            {/* Campo Biografia */}
+            <View style={styles.grupoCampo}>
+              <Text style={styles.rotulo}>Bio</Text>
               <TextInput
-                style={[styles.input, styles.bioInput]}
-                value={bio}
-                onChangeText={setBio}
+                style={[styles.campoTexto, styles.campoTextoBiografia]}
+                value={biografia}
+                onChangeText={setBiografia}
                 placeholder="Oi, bem vindos ao meu Perfil"
                 placeholderTextColor="#999"
                 multiline
@@ -160,16 +224,36 @@ export default function EditarPerfilScreen() {
 
             {/* Botão Salvar Alterações */}
             <TouchableOpacity
-              style={styles.saveButton}
-              onPress={handleSave}
+              style={styles.botaoSalvar}
+              onPress={salvarAlteracoes}
               activeOpacity={0.85}
             >
-              <Text style={styles.saveButtonText}>Salvar Alterações</Text>
+              <Text style={styles.textoBotaoSalvar}>Salvar Alterações</Text>
+            </TouchableOpacity>
+
+            {/* Botão Sair da Conta */}
+            <TouchableOpacity
+              style={styles.botaoSairConta}
+              onPress={() => {
+                Alert.alert('Sair da Conta', 'Deseja realmente sair da sua conta?', [
+                  { text: 'Cancelar', style: 'cancel' },
+                  { text: 'Sair', style: 'destructive', onPress: logout },
+                ]);
+              }}
+              activeOpacity={0.85}
+            >
+              <Ionicons
+                name="log-out-outline"
+                size={18}
+                color="#DF5268"
+                style={{ marginRight: 6 }}
+              />
+              <Text style={styles.textoBotaoSairConta}>Sair da Conta</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
 
-        {/* Barra de Navegação Inferior */}
+        {/* Barra Inferior */}
         <BottomNavBar activeTab="perfil" />
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -181,10 +265,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFE9E8',
   },
-  keyboardContainer: {
+  tecladoContainer: {
     flex: 1,
   },
-  header: {
+  cabecalho: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -192,31 +276,31 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 8,
   },
-  backButton: {
+  botaoVoltar: {
     width: 36,
     height: 36,
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
-  headerTitle: {
+  tituloCabecalho: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#111111',
     textAlign: 'center',
   },
-  headerSpacer: {
+  espacadorCabecalho: {
     width: 36,
   },
-  scrollContent: {
+  conteudoRolagem: {
     paddingTop: 10,
     paddingBottom: 24,
   },
-  avatarSection: {
+  secaoAvatar: {
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 12,
   },
-  avatarCircle: {
+  circuloAvatar: {
     width: 110,
     height: 110,
     borderRadius: 55,
@@ -227,41 +311,51 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     position: 'relative',
   },
-  avatarPlaceholder: {
+  marcadorAvatar: {
     width: '100%',
     height: '100%',
     borderRadius: 55,
     backgroundColor: '#FFFFFF',
   },
-  avatarImage: {
+  imagemAvatar: {
     width: '100%',
     height: '100%',
     borderRadius: 55,
   },
-  cameraBadge: {
+  distintivoCamera: {
     position: 'absolute',
     bottom: 2,
     right: 2,
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
     padding: 4,
-    borderWidth: 1,
-    borderColor: '#DF5268',
+    borderWidth: 1.5,
+    borderColor: '#F0435F',
   },
-  formContainer: {
+  botaoAlterarFoto: {
+    marginTop: 8,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+  },
+  textoAlterarFoto: {
+    fontSize: 13,
+    color: '#F0435F',
+    fontWeight: '700',
+  },
+  formularioContainer: {
     paddingHorizontal: 24,
     marginTop: 10,
   },
-  fieldGroup: {
+  grupoCampo: {
     marginBottom: 16,
   },
-  label: {
+  rotulo: {
     fontSize: 14,
     fontWeight: '700',
     color: '#111111',
     marginBottom: 6,
   },
-  input: {
+  campoTexto: {
     backgroundColor: '#FFFFFF',
     borderRadius: 8,
     borderWidth: 1,
@@ -272,27 +366,43 @@ const styles = StyleSheet.create({
     color: '#111111',
     ...(Platform.OS === 'web' ? { outlineStyle: 'none', outlineWidth: 0 } : {}),
   },
-  bioInput: {
+  campoTextoBiografia: {
     height: 80,
     textAlignVertical: 'top',
     ...(Platform.OS === 'web' ? { outlineStyle: 'none', outlineWidth: 0 } : {}),
   },
-  saveButton: {
-    backgroundColor: '#DC586D',
+  botaoSalvar: {
+    backgroundColor: '#F0435F',
     borderRadius: 8,
     height: 48,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
-    shadowColor: '#000',
+    shadowColor: '#F0435F',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.25,
     shadowRadius: 3,
     elevation: 3,
   },
-  saveButtonText: {
+  textoBotaoSalvar: {
     color: '#FFFFFF',
     fontSize: 15,
+    fontWeight: 'bold',
+  },
+  botaoSairConta: {
+    flexDirection: 'row',
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1.5,
+    borderColor: '#DF5268',
+    borderRadius: 8,
+    height: 46,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 12,
+  },
+  textoBotaoSairConta: {
+    color: '#DF5268',
+    fontSize: 14,
     fontWeight: 'bold',
   },
 });

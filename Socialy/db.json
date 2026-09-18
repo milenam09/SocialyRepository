@@ -1,0 +1,344 @@
+{
+  "profile": {
+    "name": "Rafa Linda",
+    "username": "linda",
+    "bio": "Novo no Socialy! 👋",
+    "bioEdit": "Novo no Socialy! 👋",
+    "avatar": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/85621867-a051-4142-8002-8647bd5ba8db.jpeg",
+    "stats": {
+      "publicacoes": 0,
+      "seguidores": 0,
+      "seguindo": 0
+    },
+    "id": "Tm1IRvvJZNo"
+  },
+  "users": [
+    {
+      "id": "1",
+      "name": "Leonardo Oliveira",
+      "username": "leo_00",
+      "email": "leo@socialy.com",
+      "password": "123",
+      "bio": "Especialista em marketing digital.\nCasado💍",
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80",
+      "stats": {
+        "publicacoes": 12,
+        "seguidores": 500,
+        "seguindo": 80
+      }
+    },
+    {
+      "id": "TNo8Z-ZZGZc",
+      "name": "Blessed_carrinho77k",
+      "username": "Blessed_carrinho",
+      "email": "julio@gmail.com",
+      "password": "123",
+      "bio": "Abençoado 🛐",
+      "avatar": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/7292570a-f6dd-42e9-acd2-92787d9ed4dc.jpeg",
+      "stats": {
+        "publicacoes": 0,
+        "seguidores": 0,
+        "seguindo": 0
+      },
+      "bioEdit": "Abençoado 🛐"
+    },
+    {
+      "id": "Tm1IRvvJZNo",
+      "name": "Rafa Linda",
+      "username": "linda",
+      "email": "linda@gmail.com",
+      "password": "133",
+      "bio": "Novo no Socialy! 👋",
+      "avatar": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/85621867-a051-4142-8002-8647bd5ba8db.jpeg",
+      "stats": {
+        "publicacoes": 0,
+        "seguidores": 0,
+        "seguindo": 0
+      },
+      "bioEdit": "Novo no Socialy! 👋"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "user": "bia_fr",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80",
+      "content": "Tipo eh tipo uh tipo nd aver",
+      "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&auto=format&fit=crop&q=80",
+      "location": "São Paulo, SP",
+      "likes": 302,
+      "comments": 4,
+      "isLiked": true,
+      "isBookmarked": false,
+      "time": "hoje às 13:20",
+      "commentsList": [
+        {
+          "id": "c1",
+          "author": "Milena Mares",
+          "time": "hoje às 14:09",
+          "text": "Ficou incrível!"
+        },
+        {
+          "id": "c2",
+          "author": "julio",
+          "time": "agora mesmo",
+          "text": "Muito legal esse post!"
+        },
+        {
+          "id": "1789733678110",
+          "author": "julio",
+          "authorAvatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80",
+          "time": "agora mesmo",
+          "text": "faz favor fia"
+        },
+        {
+          "id": "1789742107370",
+          "author": "Rafa Linda",
+          "authorAvatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80",
+          "time": "agora mesmo",
+          "text": "Sem noção isso"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "user": "Lili_00",
+      "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&auto=format&fit=crop&q=80",
+      "content": "Minhas roupas estão secando no varal já tem 3 dias e nada!!!!!",
+      "image": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80",
+      "location": "Rio de Janeiro, RJ",
+      "likes": 503,
+      "comments": 3,
+      "isLiked": true,
+      "isBookmarked": false,
+      "time": "hoje às 12:45",
+      "commentsList": [
+        {
+          "id": "c1",
+          "author": "Milena Mares",
+          "authorAvatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=80",
+          "time": "hoje às 13:05",
+          "text": "Aqui em SP tá a mesma coisa kkkk 🌧️"
+        },
+        {
+          "id": "c2",
+          "author": "bia_fr",
+          "authorAvatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80",
+          "time": "hoje às 13:20",
+          "text": "Usa o secador de cabelo mulher kkkk"
+        },
+        {
+          "id": "1789740877379",
+          "author": "Blessed_carrinho77k",
+          "authorAvatar": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/7292570a-f6dd-42e9-acd2-92787d9ed4dc.jpeg",
+          "time": "agora mesmo",
+          "text": "ola"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "user": "ogvlenza",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=80",
+      "content": "Frank Ocean volta nunca?",
+      "image": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80",
+      "location": null,
+      "likes": 102,
+      "comments": 3,
+      "isLiked": true,
+      "isBookmarked": false,
+      "time": "hoje às 10:15",
+      "commentsList": [
+        {
+          "id": "c1",
+          "author": "Milena Mares",
+          "authorAvatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=80",
+          "time": "hoje às 14:09",
+          "text": "Ficou incrível continua assim!!"
+        },
+        {
+          "id": "1789733512025",
+          "author": "julio",
+          "authorAvatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80",
+          "time": "agora mesmo",
+          "text": "volta nunca msm 😢"
+        },
+        {
+          "id": "1789742218809",
+          "author": "Rafa Linda",
+          "authorAvatar": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/85621867-a051-4142-8002-8647bd5ba8db.jpeg",
+          "time": "agora mesmo",
+          "text": "KD a Chappell roan 😓"
+        }
+      ]
+    },
+    {
+      "id": "rPSmN4T4am0",
+      "user": "Blessed_carrinho",
+      "avatar": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/7292570a-f6dd-42e9-acd2-92787d9ed4dc.jpeg",
+      "content": "ola",
+      "image": "file:///var/mobile/Containers/Data/Application/DD865902-2D82-403F-AF20-10DF0FF06388/Library/Caches/ImagePicker/246A24D5-27B4-407A-A81E-E1D4584CBF45.jpg",
+      "location": "São Caetano do Sul, SP",
+      "latitude": -23.615073572422336,
+      "longitude": -46.570826189356374,
+      "coords": {
+        "latitude": -23.615073572422336,
+        "longitude": -46.570826189356374
+      },
+      "likes": 1,
+      "comments": 2,
+      "isLiked": true,
+      "isBookmarked": true,
+      "time": "agora mesmo",
+      "commentsList": [
+        {
+          "id": "c1",
+          "author": "Milena Mares",
+          "authorAvatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=80",
+          "time": "hoje às 14:09",
+          "text": "Ficou incrível continua assim!!"
+        },
+        {
+          "id": "1789740934322",
+          "author": "Blessed_carrinho77k",
+          "authorAvatar": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/7292570a-f6dd-42e9-acd2-92787d9ed4dc.jpeg",
+          "time": "agora mesmo",
+          "text": "ola"
+        }
+      ]
+    },
+    {
+      "id": "C09xbo_r9q8",
+      "user": "linda",
+      "avatar": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/85621867-a051-4142-8002-8647bd5ba8db.jpeg",
+      "content": "KD ela que n volta 😓😓😓😓",
+      "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/700e2b6e-3ff2-4826-9646-dbd55b687c88.jpeg",
+      "location": "São Caetano do Sul, São Paulo",
+      "latitude": -23.6151524,
+      "longitude": -46.5708465,
+      "coords": {
+        "latitude": -23.6151524,
+        "longitude": -46.5708465
+      },
+      "likes": 1,
+      "comments": 0,
+      "isLiked": true,
+      "isBookmarked": true,
+      "time": "agora mesmo"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "n1",
+      "user": "Milena",
+      "action": "Curtiu sua publicação.",
+      "time": "5m",
+      "type": "heart",
+      "targetPostId": "post_milena"
+    },
+    {
+      "id": "n2",
+      "user": "Lili_00",
+      "action": "Curtiu sua publicação",
+      "time": "10min",
+      "type": "heart",
+      "targetPostId": "2"
+    },
+    {
+      "id": "n3",
+      "user": "Clefairy",
+      "action": "Começou a seguir você",
+      "time": "1hr",
+      "type": "user"
+    },
+    {
+      "id": "n4",
+      "user": "Clefairy",
+      "action": "Curtiu sua publicação.",
+      "time": "1hr",
+      "type": "heart",
+      "targetPostId": "1"
+    },
+    {
+      "id": "n5",
+      "user": "Ronaldo",
+      "action": "Curtiu sua publicação",
+      "time": "1hr",
+      "type": "heart",
+      "targetPostId": "3"
+    },
+    {
+      "id": "AGknpBjlS3c",
+      "time": "agora mesmo",
+      "type": "heart",
+      "user": "Ronaldo",
+      "action": "curtiu sua publicação.",
+      "targetPostId": "1789585364595"
+    },
+    {
+      "id": "gTx-M3I_gS4",
+      "time": "agora mesmo",
+      "type": "heart",
+      "user": "Clefairy",
+      "action": "curtiu sua publicação.",
+      "targetPostId": "1789585364595"
+    },
+    {
+      "id": "b3gUTTfnhpQ",
+      "time": "agora mesmo",
+      "type": "heart",
+      "user": "Bia",
+      "action": "curtiu sua publicação.",
+      "targetPostId": "_j6SZsvHa28"
+    },
+    {
+      "id": "LW23cdnd3-w",
+      "time": "agora mesmo",
+      "type": "heart",
+      "user": "Clefairy",
+      "action": "curtiu sua publicação.",
+      "targetPostId": "_j6SZsvHa28"
+    },
+    {
+      "id": "oR6x52sB05c",
+      "time": "agora mesmo",
+      "type": "heart",
+      "user": "Ronaldo",
+      "action": "curtiu sua publicação.",
+      "targetPostId": "_j6SZsvHa28"
+    },
+    {
+      "id": "A0g4x1AQ4NI",
+      "time": "agora mesmo",
+      "type": "heart",
+      "user": "Ronaldo",
+      "action": "curtiu sua publicação.",
+      "targetPostId": "_j6SZsvHa28"
+    },
+    {
+      "id": "ulIIpevRitk",
+      "time": "agora mesmo",
+      "type": "heart",
+      "user": "Bia",
+      "action": "curtiu sua publicação.",
+      "targetPostId": "rPSmN4T4am0"
+    },
+    {
+      "id": "RUGUptzYbk0",
+      "time": "agora mesmo",
+      "type": "heart",
+      "user": "Lili_00",
+      "action": "curtiu sua publicação.",
+      "targetPostId": "rPSmN4T4am0"
+    },
+    {
+      "id": "8Eg0QmPATJU",
+      "time": "agora mesmo",
+      "type": "heart",
+      "user": "Ronaldo",
+      "action": "curtiu sua publicação.",
+      "targetPostId": "C09xbo_r9q8"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

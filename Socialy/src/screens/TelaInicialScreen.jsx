@@ -17,40 +17,40 @@ export default function TelaInicialScreen() {
     <SafeAreaView style={styles.container} edges={['top', 'bottom', 'left', 'right']}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFEBEF" />
 
-      {/* Seção Superior - Logo */}
-      <View style={styles.topSection}>
-        <View style={styles.logoContainer}>
+      {/* Seção Superior com Logo */}
+      <View style={styles.secaoSuperior}>
+        <View style={styles.containerLogo}>
           <Image
             source={require('../../assets/socialy-logo-transparent.png')}
-            style={styles.logoImage}
+            style={styles.imagemLogo}
             resizeMode="contain"
           />
         </View>
       </View>
 
-      {/* Seção Central - Mensagem */}
-      <View style={styles.messageContainer}>
-        <Text style={styles.taglineText}>
+      {/* Mensagem de Boas-vindas */}
+      <View style={styles.containerMensagem}>
+        <Text style={styles.textoFraseEfeito}>
           Conecte-se com as pessoas e{'\n'}compartilhe momentos.
         </Text>
       </View>
 
-      {/* Seção Inferior - Botões */}
-      <View style={styles.buttonSection}>
+      {/* Seção de Ações: Entrar ou Criar Conta */}
+      <View style={styles.secaoBotoes}>
         <TouchableOpacity
-          style={[styles.button, styles.primaryButton]}
+          style={[styles.botao, styles.botaoPrimario]}
           onPress={() => navigate('Login')}
           activeOpacity={0.85}
         >
-          <Text style={styles.primaryButtonText}>Entrar</Text>
+          <Text style={styles.textoBotaoPrimario}>Entrar</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.button, styles.secondaryButton]}
+          style={[styles.botao, styles.botaoSecundario]}
           onPress={() => navigate('CriarConta')}
           activeOpacity={0.85}
         >
-          <Text style={styles.secondaryButtonText}>Criar conta</Text>
+          <Text style={styles.textoBotaoSecundario}>Criar conta</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -66,28 +66,28 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingBottom: 40,
   },
-  topSection: {
+  secaoSuperior: {
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 30,
   },
-  logoContainer: {
+  containerLogo: {
     alignItems: 'center',
     justifyContent: 'center',
     width: 210,
     height: 200,
   },
-  logoImage: {
+  imagemLogo: {
     width: '100%',
     height: '100%',
   },
-  messageContainer: {
+  containerMensagem: {
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 16,
     marginVertical: 20,
   },
-  taglineText: {
+  textoFraseEfeito: {
     fontSize: 18,
     lineHeight: 26,
     fontWeight: '700',
@@ -95,12 +95,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     letterSpacing: -0.2,
   },
-  buttonSection: {
+  secaoBotoes: {
     width: '100%',
     gap: 16,
     marginBottom: 16,
   },
-  button: {
+  botao: {
     width: '100%',
     height: 52,
     borderRadius: 14,
@@ -112,19 +112,19 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 3,
   },
-  primaryButton: {
+  botaoPrimario: {
     backgroundColor: '#DC586D',
   },
-  primaryButtonText: {
+  textoBotaoPrimario: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '700',
     letterSpacing: 0.2,
   },
-  secondaryButton: {
+  botaoSecundario: {
     backgroundColor: '#FFFFFF',
   },
-  secondaryButtonText: {
+  textoBotaoSecundario: {
     color: '#1A1A1A',
     fontSize: 16,
     fontWeight: '700',

@@ -1,37 +1,43 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-  SafeAreaView,
-  StatusBar,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-  Alert,
-} from 'react-native';
+import {View,Text,TextInput,TouchableOpacity,StyleSheet,Image,SafeAreaView, StatusBar, ScrollView, KeyboardAvoidingView,Platform, Alert, ActivityIndicator,} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '../context/NavigationContext';
+import { api } from '../services/api';
 import { colors } from '../theme/colors';
 
 export default function LoginScreen() {
-  const { navigate } = useNavigation();
+  const { navigate, setCurrentUser } = useNavigation();
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [senha, setSenha] = useState('');
+  const [carregando, setCarregando] = useState(false);
 
-  const handleLogin = () => {
-    // Validação simples e navegação para o feed
-    navigate('Feed');
+  // Função para autenticar o usuário
+  const realizarLogin = async () => {
+    const emailFormatado = email.trim();
+    if (!emailFormatado || !senha) {
+      Alert.alert('Campos Obrigatórios', 'Por favor, digite seu e-mail e sua senha.');
+      return;
+    }
+
+    try {
+      setCarregando(true);
+      const usuario = await api.loginUser(emailFormatado, senha);
+      setCurrentUser(usuario);
+      navigate('Feed');
+    } catch (erro) {
+      Alert.alert('Falha no Login', erro.message || 'Não foi possível autenticar.');
+    } finally {
+      setCarregando(false);
+    }
   };
 
-  const handleForgotPassword = () => {
+  // Função para recuperação de senha
+  const recuperarSenha = () => {
     Alert.alert('Recuperar Senha', 'Um link de recuperação foi enviado para seu e-mail.');
   };
 
-  const handleGoogleLogin = () => {
+  // Função para login com Google
+  const loginComGoogle = () => {
     navigate('Feed');
   };
 
@@ -39,17 +45,17 @@ export default function LoginScreen() {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFE9E8" />
       <KeyboardAvoidingView
-        style={styles.keyboardContainer}
+        style={styles.tecladoContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         <ScrollView
-          contentContainerStyle={styles.scrollContent}
+          contentContainerStyle={styles.conteudoRolagem}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
-          {/* Card Principal de Login */}
-          <View style={styles.card}>
-            {/* Logo do Card */}
+          {/* Cartão Principal de Login */}
+          <View style={styles.cartao}>
+            {/* Logo */}
             <Image
               source={require('../../assets/logo.png')}
               style={styles.logo}
@@ -59,13 +65,13 @@ export default function LoginScreen() {
             {/* Título */}
             <Text style={styles.titulo}>Login</Text>
 
-            {/* Formulário */}
+            {/* Formulário de Autenticação */}
             <View style={styles.formulario}>
               {/* Campo E-mail */}
               <View style={styles.campo}>
-                <Text style={styles.label}>E-mail</Text>
+                <Text style={styles.rotulo}>E-mail</Text>
                 <TextInput
-                  style={styles.input}
+                  style={styles.campoTexto}
                   placeholder="Ex:Email@email.com"
                   placeholderTextColor="#999"
                   keyboardType="email-address"
@@ -77,64 +83,69 @@ export default function LoginScreen() {
 
               {/* Campo Senha */}
               <View style={styles.campo}>
-                <Text style={styles.label}>Senha</Text>
+                <Text style={styles.rotulo}>Senha</Text>
                 <TextInput
-                  style={styles.input}
+                  style={styles.campoTexto}
                   placeholder="Digite sua senha"
                   placeholderTextColor="#999"
                   secureTextEntry
-                  value={password}
-                  onChangeText={setPassword}
+                  value={senha}
+                  onChangeText={setSenha}
                 />
               </View>
 
-              {/* Link Esqueceu a senha */}
+              {/* Botão Esqueceu a senha */}
               <TouchableOpacity
-                onPress={handleForgotPassword}
+                onPress={recuperarSenha}
                 activeOpacity={0.7}
-                style={styles.forgotPasswordButton}
+                style={styles.botaoEsqueceuSenha}
               >
-                <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
+                <Text style={styles.textoEsqueceuSenha}>Esqueceu a senha?</Text>
               </TouchableOpacity>
             </View>
 
             {/* Botão Entrar */}
             <TouchableOpacity
-              style={styles.botaoEntrar}
-              onPress={handleLogin}
+              style={[styles.botaoEntrar, carregando && { opacity: 0.7 }]}
+              onPress={realizarLogin}
               activeOpacity={0.85}
+              disabled={carregando}
             >
-              <Text style={styles.textoBotaoEntrar}>Entrar</Text>
+              {carregando ? (
+                <ActivityIndicator color="#FFFFFF" size="small" />
+              ) : (
+                <Text style={styles.textoBotaoEntrar}>Entrar</Text>
+              )}
             </TouchableOpacity>
           </View>
 
           {/* Divisor "Ou" */}
-          <View style={styles.dividerContainer}>
-            <View style={styles.dividerLine} />
-            <Text style={styles.dividerText}>Ou</Text>
-            <View style={styles.dividerLine} />
+          <View style={styles.divisorContainer}>
+            <View style={styles.linhaDivisor} />
+            <Text style={styles.textoDivisor}>Ou</Text>
+            <View style={styles.linhaDivisor} />
           </View>
 
           {/* Botão Entrar com Google */}
           <TouchableOpacity
-            style={styles.googleButton}
-            onPress={handleGoogleLogin}
+            style={styles.botaoGoogle}
+            onPress={loginComGoogle}
             activeOpacity={0.85}
           >
-            <View style={styles.googleIconContainer}>
+            <View style={styles.iconeGoogleContainer}>
               <Ionicons name="logo-google" size={18} color="#EA4335" />
             </View>
-            <Text style={styles.googleButtonText}>Entrar com Google</Text>
+            <Text style={styles.textoBotaoGoogle}>Entrar com Google</Text>
           </TouchableOpacity>
 
-          {/* Link Não tem uma conta? Criar conta */}
-          <View style={styles.footerContainer}>
-            <Text style={styles.footerText}>Não tem uma conta?</Text>
+          {/* Rodapé: Link para Criar Conta */}
+          <View style={styles.rodapeContainer}>
+            <Text style={styles.textoRodape}>Não tem uma conta?</Text>
             <TouchableOpacity
               onPress={() => navigate('CriarConta')}
               activeOpacity={0.7}
             >
-              <Text style={styles.footerLink}>Criar conta</Text>
+              <Text style={styles.linkRodape}>Criar conta</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -148,10 +159,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFE9E8',
   },
-  keyboardContainer: {
+  tecladoContainer: {
     flex: 1,
   },
-  scrollContent: {
+  conteudoRolagem: {
     paddingHorizontal: 20,
     paddingTop: 30,
     paddingBottom: 30,
@@ -159,7 +170,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     minHeight: '100%',
   },
-  card: {
+  cartao: {
     width: '100%',
     maxWidth: 380,
     backgroundColor: '#FFF7F7',
@@ -195,13 +206,13 @@ const styles = StyleSheet.create({
   campo: {
     width: '100%',
   },
-  label: {
+  rotulo: {
     fontSize: 12,
     fontWeight: '600',
     color: '#111111',
     marginBottom: 6,
   },
-  input: {
+  campoTexto: {
     width: '100%',
     height: 42,
     borderWidth: 1,
@@ -213,11 +224,11 @@ const styles = StyleSheet.create({
     color: '#111111',
     ...(Platform.OS === 'web' ? { outlineStyle: 'none', outlineWidth: 0 } : {}),
   },
-  forgotPasswordButton: {
+  botaoEsqueceuSenha: {
     alignSelf: 'flex-start',
     marginTop: 2,
   },
-  forgotPasswordText: {
+  textoEsqueceuSenha: {
     fontSize: 11,
     color: '#DF5268',
     fontWeight: '500',
@@ -241,26 +252,26 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
   },
-  dividerContainer: {
+  divisorContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     width: '80%',
     marginTop: 28,
     marginBottom: 16,
   },
-  dividerLine: {
+  linhaDivisor: {
     flex: 1,
     height: 1,
     backgroundColor: '#A33757',
     opacity: 0.5,
   },
-  dividerText: {
+  textoDivisor: {
     marginHorizontal: 12,
     fontSize: 13,
     color: '#333',
     fontWeight: '500',
   },
-  googleButton: {
+  botaoGoogle: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -277,25 +288,25 @@ const styles = StyleSheet.create({
     elevation: 2,
     marginBottom: 24,
   },
-  googleIconContainer: {
+  iconeGoogleContainer: {
     marginRight: 10,
   },
-  googleButtonText: {
+  textoBotaoGoogle: {
     fontSize: 13,
     fontWeight: '600',
     color: '#333333',
   },
-  footerContainer: {
+  rodapeContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  footerText: {
+  textoRodape: {
     fontSize: 12,
     fontWeight: '600',
     color: '#111111',
   },
-  footerLink: {
+  linkRodape: {
     marginLeft: 6,
     fontSize: 12,
     fontWeight: '700',

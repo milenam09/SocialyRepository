@@ -7,53 +7,61 @@ import { colors } from '../theme/colors';
 export default function BottomNavBar({ activeTab }) {
   const { navigate } = useNavigation();
 
+  const corAtiva = '#F0435F';
+  const corInativa = '#A33757';
+
   return (
     <View style={styles.container}>
       {/* Início */}
       <TouchableOpacity
-        style={styles.tabItem}
+        style={styles.itemAba}
         onPress={() => navigate('Feed')}
         activeOpacity={0.7}
       >
         <Feather
           name="home"
           size={24}
-          color="#A33757"
+          color={activeTab === 'inicio' ? corAtiva : corInativa}
         />
         <Text
           style={[
-            styles.tabLabel,
-            activeTab === 'inicio' && styles.tabLabelActive,
+            styles.rotuloAba,
+            activeTab === 'inicio' && styles.rotuloAbaAtiva,
           ]}
         >
           Início
         </Text>
+        {activeTab === 'inicio' && <View style={styles.pontoAtivo} />}
       </TouchableOpacity>
 
       {/* Buscar */}
       <TouchableOpacity
-        style={styles.tabItem}
+        style={styles.itemAba}
         onPress={() => navigate('Navegacao')}
         activeOpacity={0.7}
       >
         <Feather
           name="search"
           size={24}
-          color="#A33757"
+          color={activeTab === 'buscar' ? corAtiva : corInativa}
         />
         <Text
           style={[
-            styles.tabLabel,
-            activeTab === 'buscar' && styles.tabLabelActive,
+            styles.rotuloAba,
+            activeTab === 'buscar' && styles.rotuloAbaAtiva,
           ]}
         >
           Buscar
         </Text>
+        {activeTab === 'buscar' && <View style={styles.pontoAtivo} />}
       </TouchableOpacity>
 
       {/* Botão Central (+) Criar */}
       <TouchableOpacity
-        style={styles.centroButton}
+        style={[
+          styles.botaoCentral,
+          activeTab === 'criar' && styles.botaoCentralAtivo,
+        ]}
         onPress={() => navigate('NovaPublicacao')}
         activeOpacity={0.85}
       >
@@ -62,44 +70,46 @@ export default function BottomNavBar({ activeTab }) {
 
       {/* Notificações */}
       <TouchableOpacity
-        style={styles.tabItem}
+        style={styles.itemAba}
         onPress={() => navigate('Notificacoes')}
         activeOpacity={0.7}
       >
         <Ionicons
-          name="notifications-outline"
+          name={activeTab === 'notificacoes' ? 'notifications' : 'notifications-outline'}
           size={24}
-          color="#A33757"
+          color={activeTab === 'notificacoes' ? corAtiva : corInativa}
         />
         <Text
           style={[
-            styles.tabLabel,
-            activeTab === 'notificacoes' && styles.tabLabelActive,
+            styles.rotuloAba,
+            activeTab === 'notificacoes' && styles.rotuloAbaAtiva,
           ]}
         >
           Notificações
         </Text>
+        {activeTab === 'notificacoes' && <View style={styles.pontoAtivo} />}
       </TouchableOpacity>
 
       {/* Perfil */}
       <TouchableOpacity
-        style={styles.tabItem}
+        style={styles.itemAba}
         onPress={() => navigate('Perfil')}
         activeOpacity={0.7}
       >
         <FontAwesome
           name="user"
           size={22}
-          color="#A33757"
+          color={activeTab === 'perfil' ? corAtiva : corInativa}
         />
         <Text
           style={[
-            styles.tabLabel,
-            activeTab === 'perfil' && styles.tabLabelActive,
+            styles.rotuloAba,
+            activeTab === 'perfil' && styles.rotuloAbaAtiva,
           ]}
         >
           Perfil
         </Text>
+        {activeTab === 'perfil' && <View style={styles.pontoAtivo} />}
       </TouchableOpacity>
     </View>
   );
@@ -117,32 +127,48 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     marginBottom: Platform.OS === 'ios' ? 12 : 0,
   },
-  tabItem: {
+  itemAba: {
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: 55,
   },
-  tabLabel: {
+  rotuloAba: {
     fontSize: 11,
     color: '#A33757',
     marginTop: 4,
     fontWeight: '500',
   },
-  tabLabelActive: {
+  rotuloAbaAtiva: {
+    color: '#F0435F',
     fontWeight: '700',
   },
-  centroButton: {
+  pontoAtivo: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: '#F0435F',
+    marginTop: 3,
+  },
+  botaoCentral: {
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: '#F0435F',
+    backgroundColor: '#DC586D',
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 4,
-    shadowColor: '#F0435F',
+    shadowColor: '#DC586D',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 3,
+  },
+  botaoCentralAtivo: {
+    backgroundColor: '#F0435F',
+    shadowColor: '#F0435F',
+    borderWidth: 2,
+    borderColor: '#FFFFFF',
+    transform: [{ scale: 1.08 }],
+    elevation: 5,
   },
 });

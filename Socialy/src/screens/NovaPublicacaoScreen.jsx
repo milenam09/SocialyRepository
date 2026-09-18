@@ -12,22 +12,29 @@ import {
   Platform,
   Alert,
   Image,
+  ActivityIndicator,
+  Switch,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
+import * as Location from 'expo-location';
 import { useNavigation } from '../context/NavigationContext';
 import BottomNavBar from '../components/BottomNavBar';
 import { colors } from '../theme/colors';
 
 export default function NovaPublicacaoScreen() {
   const { goBack, navigate, addFeedPost } = useNavigation();
-  const [text, setText] = useState('');
-  const [imageUri, setImageUri] = useState(null);
-  const [location, setLocation] = useState(null);
-  const [feeling, setFeeling] = useState(null);
+  const [texto, setTexto] = useState('');
+  const [uriImagem, setUriImagem] = useState(null);
+  const [localizacao, setLocalizacao] = useState(null);
+  const [coordenadas, setCoordenadas] = useState(null);
+  const [sentimento, setSentimento] = useState(null);
+  const [gpsAutomaticoNaFoto, setGpsAutomaticoNaFoto] = useState(true);
+  const [carregandoLocalizacao, setCarregandoLocalizacao] = useState(false);
 
-  const handleClose = () => {
-    if (text.trim() || imageUri) {
+  // Função para fechar ou descartar a publicação
+  const fecharTela = () => {
+    if (texto.trim() || uriImagem) {
       Alert.alert(
         'Descartar publicação?',
         'As alterações feitas não serão salvas.',
@@ -41,7 +48,108 @@ export default function NovaPublicacaoScreen() {
     }
   };
 
-  const handleAddImage = async () => {
+  // Função para buscar localização GPS atual
+  const obterLocalizacaoGps = async (silencioso = false) => {
+    setCarregandoLocalizacao(true);
+    try {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setCarregandoLocalizacao(false);
+        if (!silencioso) {
+          Alert.alert(
+            'Permissão de Localização',
+            'O Socialy precisa de permissão de localização (GPS / latitude e longitude) para identificar onde sua foto foi tirada.'
+          );
+        }
+        return null;
+      }
+
+      const posicao = await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.Balanced,
+      });
+
+      const coordenadasAtuais = {
+        latitude: posicao.coords.latitude,
+        longitude: posicao.coords.longitude,
+      };
+      setCoordenadas(coordenadasAtuais);
+
+      let nomeLugar = '';
+      try {
+        const resultadoReverso = await Location.reverseGeocodeAsync({
+          latitude: posicao.coords.latitude,
+          longitude: posicao.coords.longitude,
+        });
+
+        if (resultadoReverso && resultadoReverso.length > 0) {
+          const item = resultadoReverso[0];
+          const cidade = item.city || item.subregion || item.district || item.name;
+          const estado = item.region || item.country;
+          nomeLugar = cidade ? (estado ? `${cidade}, ${estado}` : cidade) : 'Localização Atual';
+        }
+      } catch (erroGeo) {
+        console.warn('Erro ao obter nome do endereço:', erroGeo);
+      }
+
+      if (!nomeLugar) {
+        nomeLugar = 'Localização Atual';
+      }
+
+      setLocalizacao(nomeLugar);
+      setCarregandoLocalizacao(false);
+      return { nomeLugar, coordenadas: coordenadasAtuais };
+    } catch (erro) {
+      console.error('Erro ao acessar GPS:', erro);
+      setCarregandoLocalizacao(false);
+      if (!silencioso) {
+        Alert.alert(
+          'GPS indisponível',
+          'Não foi possível obter sua localização atual via GPS. Verifique se o GPS está ativado.'
+        );
+      }
+      return null;
+    }
+  };
+
+  // Função para tirar foto com a câmera
+  const tirarFotoCamera = async () => {
+    try {
+      const { status } = await ImagePicker.requestCameraPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert(
+          'Permissão da Câmera necessária',
+          'Precisamos de permissão para usar sua câmera e tirar fotos diretamente para a publicação.'
+        );
+        return;
+      }
+
+      const resultado = await ImagePicker.launchCameraAsync({
+        mediaTypes: ['images'],
+        allowsEditing: true,
+        quality: 0.7,
+        base64: true,
+      });
+
+      if (!resultado.canceled && resultado.assets && resultado.assets.length > 0) {
+        const arquivo = resultado.assets[0];
+        const uriPersistente =
+          Platform.OS === 'web' && arquivo.base64
+            ? `data:image/jpeg;base64,${arquivo.base64}`
+            : arquivo.uri;
+        setUriImagem(uriPersistente);
+
+        if (gpsAutomaticoNaFoto && !localizacao) {
+          obterLocalizacaoGps(true);
+        }
+      }
+    } catch (erro) {
+      console.error('Erro ao abrir câmera:', erro);
+      Alert.alert('Erro na Câmera', 'Não foi possível inicializar a câmera do dispositivo.');
+    }
+  };
+
+  // Função para selecionar imagem da galeria
+  const escolherFotoGaleria = async () => {
     try {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (status !== 'granted') {
@@ -52,45 +160,89 @@ export default function NovaPublicacaoScreen() {
         return;
       }
 
-      const result = await ImagePicker.launchImageLibraryAsync({
+      const resultado = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ['images'],
         allowsEditing: true,
-        quality: 0.85,
+        quality: 0.7,
+        base64: true,
       });
 
-      if (!result.canceled && result.assets && result.assets.length > 0) {
-        setImageUri(result.assets[0].uri);
+      if (!resultado.canceled && resultado.assets && resultado.assets.length > 0) {
+        const arquivo = resultado.assets[0];
+        const uriPersistente =
+          Platform.OS === 'web' && arquivo.base64
+            ? `data:image/jpeg;base64,${arquivo.base64}`
+            : arquivo.uri;
+        setUriImagem(uriPersistente);
+
+        if (gpsAutomaticoNaFoto && !localizacao) {
+          obterLocalizacaoGps(true);
+        }
       }
-    } catch (err) {
-      console.error('Erro ao escolher imagem:', err);
+    } catch (erro) {
+      console.error('Erro ao escolher imagem:', erro);
       Alert.alert('Erro', 'Não foi possível acessar a galeria de fotos.');
     }
   };
 
-  const handleAddLocation = () => {
-    Alert.alert('Adicionar Localização', 'Escolha sua localização:', [
-      { text: 'São Paulo, SP', onPress: () => setLocation('São Paulo, SP') },
-      { text: 'Rio de Janeiro, RJ', onPress: () => setLocation('Rio de Janeiro, RJ') },
-      { text: 'Cancelar', style: 'cancel' },
-    ]);
+  // Diálogo para escolher localização
+  const definirLocalizacao = () => {
+    Alert.alert(
+      'Adicionar Localização',
+      'Como deseja definir a localização da publicação?',
+      [
+        {
+          text: '📍 Usar minha localização atual (GPS)',
+          onPress: () => obterLocalizacaoGps(false),
+        },
+        {
+          text: 'São Paulo, SP',
+          onPress: () => {
+            setLocalizacao('São Paulo, SP');
+            setCoordenadas({ latitude: -23.5505, longitude: -46.6333 });
+          },
+        },
+        {
+          text: 'Rio de Janeiro, RJ',
+          onPress: () => {
+            setLocalizacao('Rio de Janeiro, RJ');
+            setCoordenadas({ latitude: -22.9068, longitude: -43.1729 });
+          },
+        },
+        { text: 'Cancelar', style: 'cancel' },
+      ]
+    );
   };
 
-  const handleAddFeeling = () => {
+  // Diálogo para escolher sentimento
+  const selecionarSentimento = () => {
     Alert.alert('Como você está se sentindo?', 'Escolha um sentimento:', [
-      { text: '😄 Feliz', onPress: () => setFeeling('Feliz') },
-      { text: '✨ Inspirado(a)', onPress: () => setFeeling('Inspirado(a)') },
-      { text: '🚀 Animado(a)', onPress: () => setFeeling('Animado(a)') },
+      { text: '😄 Feliz', onPress: () => setSentimento('Feliz') },
+      { text: '✨ Inspirado(a)', onPress: () => setSentimento('Inspirado(a)') },
+      { text: '🚀 Animado(a)', onPress: () => setSentimento('Animado(a)') },
       { text: 'Cancelar', style: 'cancel' },
     ]);
   };
 
-  const handlePublish = () => {
-    if (!text.trim() && !imageUri) {
-      Alert.alert('Atenção', 'Escreva algo ou selecione uma imagem para publicar!');
+  // Função para publicar o post no feed
+  const publicarPost = async () => {
+    if (!texto.trim() && !uriImagem) {
+      Alert.alert('Atenção', 'Escreva algo ou tire/selecione uma foto para publicar!');
       return;
     }
 
-    addFeedPost(text.trim() || 'Nova foto compartilhada', imageUri);
+    let localizacaoFinal = localizacao;
+    let coordenadasFinais = coordenadas;
+
+    if (uriImagem && gpsAutomaticoNaFoto && (!localizacaoFinal || !coordenadasFinais)) {
+      const resultadoGps = await obterLocalizacaoGps(true);
+      if (resultadoGps) {
+        localizacaoFinal = resultadoGps.nomeLugar || localizacaoFinal;
+        coordenadasFinais = resultadoGps.coordenadas || coordenadasFinais;
+      }
+    }
+
+    addFeedPost(texto.trim() || 'Nova foto compartilhada', uriImagem, localizacaoFinal, coordenadasFinais);
     Alert.alert('Sucesso!', 'Sua publicação foi compartilhada no feed!', [
       {
         text: 'OK',
@@ -103,51 +255,51 @@ export default function NovaPublicacaoScreen() {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFE9E8" />
       <KeyboardAvoidingView
-        style={styles.keyboardContainer}
+        style={styles.tecladoContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         {/* Cabeçalho */}
-        <View style={styles.header}>
+        <View style={styles.cabecalho}>
           <TouchableOpacity
-            onPress={handleClose}
+            onPress={fecharTela}
             activeOpacity={0.7}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            style={styles.closeBtn}
+            style={styles.botaoFechar}
           >
             <Ionicons name="close" size={28} color="#DC586D" />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>Nova Publicação</Text>
-          <View style={styles.headerSpacer} />
+          <Text style={styles.tituloCabecalho}>Nova Publicação</Text>
+          <View style={styles.espacadorCabecalho} />
         </View>
 
         <ScrollView
-          contentContainerStyle={styles.scrollContent}
+          contentContainerStyle={styles.conteudoRolagem}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
-          {/* Card Principal */}
-          <View style={styles.card}>
-            <Text style={styles.cardTitle}>O que você está pensando?</Text>
+          {/* Cartão de Publicação */}
+          <View style={styles.cartao}>
+            <Text style={styles.tituloCartao}>O que você está pensando?</Text>
 
-            {/* Caixa de Texto */}
+            {/* Campo de Texto da Publicação */}
             <TextInput
-              style={styles.textArea}
+              style={styles.campoTextoArea}
               placeholder="Escreva algo..."
               placeholderTextColor="#999"
               multiline
               numberOfLines={6}
               textAlignVertical="top"
-              value={text}
-              onChangeText={setText}
+              value={texto}
+              onChangeText={setTexto}
             />
 
-            {/* Pré-visualização da imagem escolhida da galeria */}
-            {imageUri && (
-              <View style={styles.imagePreviewWrapper}>
-                <Image source={{ uri: imageUri }} style={styles.imagePreview} resizeMode="cover" />
+            {/* Prévia da Imagem Selecionada */}
+            {uriImagem && (
+              <View style={styles.previaImagemWrapper}>
+                <Image source={{ uri: uriImagem }} style={styles.previaImagem} resizeMode="cover" />
                 <TouchableOpacity
-                  style={styles.removeImageBtn}
-                  onPress={() => setImageUri(null)}
+                  style={styles.botaoRemoverImagem}
+                  onPress={() => setUriImagem(null)}
                   activeOpacity={0.8}
                 >
                   <Ionicons name="close-circle" size={26} color="#DF5268" />
@@ -155,78 +307,124 @@ export default function NovaPublicacaoScreen() {
               </View>
             )}
 
-            {/* Badges de Imagem/Local/Sentimento selecionados */}
-            {(imageUri || location || feeling) && (
-              <View style={styles.selectedTagsContainer}>
-                {imageUri && (
+            {/* Etiquetas Selecionadas (Foto, GPS, Sentimento) */}
+            {(uriImagem || localizacao || sentimento || carregandoLocalizacao) && (
+              <View style={styles.containerEtiquetasSelecionadas}>
+                {uriImagem && (
                   <TouchableOpacity
-                    style={styles.tag}
-                    onPress={() => setImageUri(null)}
+                    style={styles.etiqueta}
+                    onPress={() => setUriImagem(null)}
                   >
-                    <Text style={styles.tagText}>📷 Foto selecionada ✕</Text>
+                    <Text style={styles.textoEtiqueta}>📷 Foto selecionada ✕</Text>
                   </TouchableOpacity>
                 )}
-                {location && (
+                {carregandoLocalizacao && (
+                  <View style={styles.etiquetaCarregando}>
+                    <ActivityIndicator size="small" color="#DC586D" />
+                    <Text style={styles.textoEtiquetaCarregando}>Obtendo localização via GPS...</Text>
+                  </View>
+                )}
+                {localizacao && !carregandoLocalizacao && (
                   <TouchableOpacity
-                    style={styles.tag}
-                    onPress={() => setLocation(null)}
+                    style={styles.etiqueta}
+                    onPress={() => {
+                      setLocalizacao(null);
+                      setCoordenadas(null);
+                    }}
                   >
-                    <Text style={styles.tagText}>📍 {location} ✕</Text>
+                    <Text style={styles.textoEtiqueta}>
+                      📍 {localizacao} ✕
+                    </Text>
                   </TouchableOpacity>
                 )}
-                {feeling && (
+                {sentimento && (
                   <TouchableOpacity
-                    style={styles.tag}
-                    onPress={() => setFeeling(null)}
+                    style={styles.etiqueta}
+                    onPress={() => setSentimento(null)}
                   >
-                    <Text style={styles.tagText}>✨ {feeling} ✕</Text>
+                    <Text style={styles.textoEtiqueta}>✨ {sentimento} ✕</Text>
                   </TouchableOpacity>
                 )}
               </View>
             )}
 
-            {/* Barra de Ações: Imagem, Localização, Sentimento */}
-            <View style={styles.optionsRow}>
+            {/* Interruptor de GPS */}
+            <View style={styles.containerInterruptorGps}>
+              <View style={styles.grupoTextoGps}>
+                <Ionicons name="navigate-circle" size={22} color="#DC586D" />
+                <View style={styles.conteudoTextoGps}>
+                  <Text style={styles.tituloInterruptorGps}>GPS na Publicação</Text>
+                  <Text style={styles.subtituloInterruptorGps}>
+                    {gpsAutomaticoNaFoto
+                      ? 'Ativado: Localiza ao tirar/escolher foto'
+                      : 'Desativado: Não adiciona GPS'}
+                  </Text>
+                </View>
+              </View>
+              <Switch
+                value={gpsAutomaticoNaFoto}
+                onValueChange={(valor) => {
+                  setGpsAutomaticoNaFoto(valor);
+                  if (valor && !localizacao) {
+                    obterLocalizacaoGps(true);
+                  }
+                }}
+                trackColor={{ false: '#E0D0D4', true: '#FFA4B2' }}
+                thumbColor={gpsAutomaticoNaFoto ? '#DC586D' : '#F4F3F4'}
+              />
+            </View>
+
+            {/* Linha de Botões de Opções */}
+            <View style={styles.linhaOpcoes}>
               <TouchableOpacity
-                style={styles.optionItem}
-                onPress={handleAddImage}
+                style={styles.itemOpcao}
+                onPress={tirarFotoCamera}
                 activeOpacity={0.7}
               >
-                <Ionicons name="image-outline" size={18} color="#DC586D" />
-                <Text style={styles.optionText}>Imagem</Text>
+                <Ionicons name="camera-outline" size={20} color="#DC586D" />
+                <Text style={styles.textoOpcao}>Câmera</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={styles.optionItem}
-                onPress={handleAddLocation}
+                style={styles.itemOpcao}
+                onPress={escolherFotoGaleria}
                 activeOpacity={0.7}
               >
-                <Ionicons name="location-outline" size={18} color="#DC586D" />
-                <Text style={styles.optionText}>Localização</Text>
+                <Ionicons name="image-outline" size={20} color="#DC586D" />
+                <Text style={styles.textoOpcao}>Galeria</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={styles.optionItem}
-                onPress={handleAddFeeling}
+                style={styles.itemOpcao}
+                onPress={definirLocalizacao}
                 activeOpacity={0.7}
               >
-                <Ionicons name="happy-outline" size={18} color="#DC586D" />
-                <Text style={styles.optionText}>Sentimento</Text>
+                <Ionicons name="location-outline" size={20} color="#DC586D" />
+                <Text style={styles.textoOpcao}>GPS</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.itemOpcao}
+                onPress={selecionarSentimento}
+                activeOpacity={0.7}
+              >
+                <Ionicons name="happy-outline" size={20} color="#DC586D" />
+                <Text style={styles.textoOpcao}>Sentimento</Text>
               </TouchableOpacity>
             </View>
           </View>
 
           {/* Botão Publicar */}
           <TouchableOpacity
-            style={styles.publishButton}
-            onPress={handlePublish}
+            style={styles.botaoPublicar}
+            onPress={publicarPost}
             activeOpacity={0.85}
           >
-            <Text style={styles.publishButtonText}>Publicar</Text>
+            <Text style={styles.textoBotaoPublicar}>Publicar</Text>
           </TouchableOpacity>
         </ScrollView>
 
-        {/* Barra de Navegação Inferior */}
+        {/* Barra Inferior */}
         <BottomNavBar activeTab="criar" />
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -238,10 +436,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFE9E8',
   },
-  keyboardContainer: {
+  tecladoContainer: {
     flex: 1,
   },
-  header: {
+  cabecalho: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -249,28 +447,28 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
   },
-  closeBtn: {
+  botaoFechar: {
     width: 36,
     height: 36,
     alignItems: 'flex-start',
     justifyContent: 'center',
   },
-  headerTitle: {
+  tituloCabecalho: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#111111',
     textAlign: 'center',
   },
-  headerSpacer: {
+  espacadorCabecalho: {
     width: 36,
   },
-  scrollContent: {
+  conteudoRolagem: {
     paddingHorizontal: 20,
     paddingTop: 10,
     paddingBottom: 20,
     alignItems: 'center',
   },
-  card: {
+  cartao: {
     width: '100%',
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
@@ -283,13 +481,13 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
-  cardTitle: {
+  tituloCartao: {
     fontSize: 14,
     fontWeight: '700',
     color: '#111111',
     marginBottom: 12,
   },
-  textArea: {
+  campoTextoArea: {
     height: 180,
     backgroundColor: '#F9F9F9',
     borderRadius: 8,
@@ -301,7 +499,7 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
     ...(Platform.OS === 'web' ? { outlineStyle: 'none', outlineWidth: 0 } : {}),
   },
-  imagePreviewWrapper: {
+  previaImagemWrapper: {
     width: '100%',
     height: 190,
     borderRadius: 10,
@@ -310,37 +508,85 @@ const styles = StyleSheet.create({
     position: 'relative',
     backgroundColor: '#FFE8EC',
   },
-  imagePreview: {
+  previaImagem: {
     width: '100%',
     height: '100%',
   },
-  removeImageBtn: {
+  botaoRemoverImagem: {
     position: 'absolute',
     top: 6,
     right: 6,
     backgroundColor: '#FFFFFF',
     borderRadius: 13,
   },
-  selectedTagsContainer: {
+  containerEtiquetasSelecionadas: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 8,
-    marginTop: 10,
+    marginTop: 12,
   },
-  tag: {
+  etiqueta: {
     backgroundColor: '#FFE8EC',
     paddingHorizontal: 10,
-    paddingVertical: 4,
+    paddingVertical: 5,
     borderRadius: 12,
     borderWidth: 1,
     borderColor: '#E8A8B5',
   },
-  tagText: {
+  textoEtiqueta: {
     fontSize: 11,
     color: '#A33757',
     fontWeight: '600',
   },
-  optionsRow: {
+  etiquetaCarregando: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFF0F2',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#FFCCD5',
+    gap: 6,
+  },
+  textoEtiquetaCarregando: {
+    fontSize: 11,
+    color: '#DC586D',
+    fontWeight: '600',
+  },
+  containerInterruptorGps: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#FFF5F6',
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    marginTop: 14,
+    borderWidth: 1,
+    borderColor: '#F3CCD4',
+  },
+  grupoTextoGps: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    paddingRight: 10,
+  },
+  conteudoTextoGps: {
+    marginLeft: 8,
+    flex: 1,
+  },
+  tituloInterruptorGps: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#333333',
+  },
+  subtituloInterruptorGps: {
+    fontSize: 11,
+    color: '#777777',
+    marginTop: 1,
+  },
+  linhaOpcoes: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
@@ -349,18 +595,19 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#F0F0F0',
   },
-  optionItem: {
+  itemOpcao: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
     paddingVertical: 4,
+    paddingHorizontal: 4,
   },
-  optionText: {
+  textoOpcao: {
     fontSize: 12,
     color: '#DC586D',
     fontWeight: '600',
   },
-  publishButton: {
+  botaoPublicar: {
     width: '65%',
     maxWidth: 240,
     height: 48,
@@ -375,7 +622,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 3,
   },
-  publishButtonText: {
+  textoBotaoPublicar: {
     color: '#FFFFFF',
     fontSize: 15,
     fontWeight: 'bold',

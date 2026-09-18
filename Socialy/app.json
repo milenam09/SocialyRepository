@@ -13,14 +13,41 @@
       "backgroundColor": "#FFE9E8"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "O Socialy precisa de acesso à câmera para tirar fotos de publicações e perfil.",
+        "NSPhotoLibraryUsageDescription": "O Socialy precisa de acesso à sua galeria para selecionar fotos para publicações e perfil.",
+        "NSLocationWhenInUseUsageDescription": "O Socialy precisa de acesso à sua localização (GPS / latitude e longitude) para identificar a cidade onde a foto foi tirada."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundColor": "#FFE9E8"
-      }
+      },
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Permitir que o Socialy use sua localização (GPS / latitude e longitude) para identificar onde as fotos foram tiradas."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O Socialy precisa de acesso às suas fotos para compartilhá-las.",
+          "cameraPermission": "O Socialy precisa de acesso à câmera para capturar fotos em tempo real."
+        }
+      ]
+    ],
     "web": {
       "favicon": "./assets/favicon.png"
     }

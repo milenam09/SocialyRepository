@@ -1,49 +1,48 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  SafeAreaView,
-  StatusBar,
-} from 'react-native';
+import {View,Text,ScrollView,TouchableOpacity,Image,StyleSheet,SafeAreaView, StatusBar,} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '../context/NavigationContext';
 import BottomNavBar from '../components/BottomNavBar';
 import { colors } from '../theme/colors';
 
 export default function FeedScreen() {
-  const {
-    feedPosts,
-    toggleLikeFeedPost,
-    toggleBookmarkFeedPost,
-    navigate,
-    setSelectedPost,
-  } = useNavigation();
+  const {publicacoesFeed,curtirPublicacao,salvarPublicacao,navigate,definirPublicacaoSelecionada,} = useNavigation();
 
-  const handleOpenPost = (post) => {
-    setSelectedPost({
-      id: post.id,
-      author: post.user,
-      authorAvatar: post.avatar,
-      time: post.time || 'hoje às 14:09',
-      text: post.content,
-      image: post.image,
-      likes: post.likes,
-      commentsCount: post.comments,
-      isLiked: post.isLiked,
-      isBookmarked: post.isBookmarked,
-      comments: [
-        {
-          id: 'c1',
-          author: 'Milena Mares',
-          authorAvatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=80',
-          time: 'hoje às 14:09',
-          text: 'Ficou incrível continua assim!!',
-        },
-      ],
+ 
+  const abrirPublicacao = (publicacao) => {
+    const comentariosPublicacao =
+      Array.isArray(publicacao.commentsList) && publicacao.commentsList.length > 0
+        ? publicacao.commentsList
+        : [
+            {
+              id: 'c1',
+              author: 'Milena Mares',
+              authorAvatar:
+                'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=80',
+              time: 'hoje às 14:09',
+              text: 'Ficou incrível continua assim!!',
+            },
+          ];
+
+    definirPublicacaoSelecionada({
+      id: publicacao.id,
+      author: publicacao.user,
+      authorAvatar: publicacao.avatar,
+      time: publicacao.time || 'hoje às 14:09',
+      location: publicacao.location,
+      latitude: publicacao.latitude,
+      longitude: publicacao.longitude,
+      text: publicacao.content,
+      image: publicacao.image,
+      likes: publicacao.likes,
+      commentsCount:
+        typeof publicacao.comments === 'number'
+          ? publicacao.comments
+          : comentariosPublicacao.length,
+      isLiked: publicacao.isLiked,
+      isBookmarked: publicacao.isBookmarked,
+      comments: comentariosPublicacao,
+      commentsList: comentariosPublicacao,
     });
     navigate('Publicacao');
   };
@@ -52,18 +51,18 @@ export default function FeedScreen() {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFEFEF" />
 
-      {/* Top Header */}
-      <View style={styles.header}>
-        <View style={styles.logoRow}>
+     
+      <View style={styles.cabecalho}>
+        <View style={styles.linhaLogo}>
           <Image
             source={require('../../assets/logo.png')}
-            style={styles.logoIcon}
+            style={styles.iconeLogo}
             resizeMode="contain"
           />
-          <Text style={styles.logoText}>socialy</Text>
+          <Text style={styles.textoLogo}>socialy</Text>
         </View>
         <TouchableOpacity
-          style={styles.searchBtn}
+          style={styles.botaoPesquisa}
           onPress={() => navigate('Navegacao')}
           activeOpacity={0.7}
         >
@@ -71,82 +70,101 @@ export default function FeedScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Posts Feed ScrollView */}
+     
       <ScrollView
-        style={styles.feedList}
-        contentContainerStyle={styles.feedContent}
+        style={styles.listaFeed}
+        contentContainerStyle={styles.conteudoFeed}
         showsVerticalScrollIndicator={false}
       >
-        {feedPosts.map((post) => (
-          <View key={post.id} style={styles.postCard}>
-            {/* Post Header: Avatar & Username */}
+        {publicacoesFeed.map((publicacao) => (
+          <View key={publicacao.id} style={styles.cartaoPublicacao}>
+            
             <TouchableOpacity
-              style={styles.postHeader}
+              style={styles.cabecalhoPublicacao}
               onPress={() => navigate('Perfil')}
               activeOpacity={0.8}
             >
-              {post.avatar ? (
-                <Image source={{ uri: post.avatar }} style={styles.avatarImage} />
+              {publicacao.avatar ? (
+                <Image
+                  source={{ uri: publicacao.avatar }}
+                  style={styles.imagemAvatar}
+                />
               ) : (
-                <View style={styles.avatarPlaceholder}>
+                <View style={styles.marcadorAvatar}>
                   <Ionicons name="person" size={18} color="#DE5169" />
                 </View>
               )}
-              <Text style={styles.username}>{post.user}</Text>
+              <View style={styles.conteudoCabecalhoPost}>
+                <Text style={styles.nomeUsuario}>{publicacao.user}</Text>
+                {publicacao.location && (
+                  <View style={styles.linhaLocalizacao}>
+                    <Ionicons name="location-sharp" size={11} color="#DC586D" />
+                    <Text style={styles.textoLocalizacao}>
+                      {publicacao.location}
+                    </Text>
+                  </View>
+                )}
+              </View>
             </TouchableOpacity>
 
-            {/* Post Content */}
+           
             <TouchableOpacity
-              onPress={() => handleOpenPost(post)}
+              onPress={() => abrirPublicacao(publicacao)}
               activeOpacity={0.9}
             >
-              <Text style={styles.postText}>{post.content}</Text>
-              {post.image && (
-                <View style={styles.postImageWrapper}>
+              <Text style={styles.textoPublicacao}>{publicacao.content}</Text>
+              {publicacao.image && (
+                <View style={styles.embrulhoImagemPost}>
                   <Image
-                    source={{ uri: post.image }}
-                    style={styles.postImage}
+                    source={{ uri: publicacao.image }}
+                    style={styles.imagemPost}
                     resizeMode="cover"
                   />
                 </View>
               )}
             </TouchableOpacity>
 
-            {/* Post Actions Footer */}
-            <View style={styles.postFooter}>
-              <View style={styles.leftActions}>
-                {/* Like Button */}
+          
+            <View style={styles.rodapePublicacao}>
+              <View style={styles.acoesEsquerda}>
+              
                 <TouchableOpacity
-                  style={styles.actionBtn}
-                  onPress={() => toggleLikeFeedPost(post.id)}
+                  style={styles.botaoAcao}
+                  onPress={() => curtirPublicacao(publicacao.id)}
                   activeOpacity={0.7}
                 >
                   <Ionicons
-                    name={post.isLiked ? 'heart' : 'heart-outline'}
+                    name={publicacao.isLiked ? 'heart' : 'heart-outline'}
                     size={20}
-                    color={post.isLiked ? '#DE5169' : '#A33757'}
+                    color={publicacao.isLiked ? '#DE5169' : '#A33757'}
                   />
-                  <Text style={styles.actionCount}>{post.likes}</Text>
+                  <Text style={styles.contadorAcao}>{publicacao.likes}</Text>
                 </TouchableOpacity>
 
-                {/* Comment Button (abre tela Publicação) */}
+               
                 <TouchableOpacity
-                  style={[styles.actionBtn, { marginLeft: 16 }]}
-                  onPress={() => handleOpenPost(post)}
+                  style={[styles.botaoAcao, { marginLeft: 16 }]}
+                  onPress={() => abrirPublicacao(publicacao)}
                   activeOpacity={0.7}
                 >
-                  <Ionicons name="chatbubble-outline" size={19} color="#A33757" />
-                  <Text style={styles.actionCount}>{post.comments}</Text>
+                  <Ionicons
+                    name="chatbubble-outline"
+                    size={19}
+                    color="#A33757"
+                  />
+                  <Text style={styles.contadorAcao}>{publicacao.comments}</Text>
                 </TouchableOpacity>
               </View>
 
-              {/* Bookmark Button */}
+             
               <TouchableOpacity
-                onPress={() => toggleBookmarkFeedPost(post.id)}
+                onPress={() => salvarPublicacao(publicacao.id)}
                 activeOpacity={0.7}
               >
                 <Ionicons
-                  name={post.isBookmarked ? 'bookmark' : 'bookmark-outline'}
+                  name={
+                    publicacao.isBookmarked ? 'bookmark' : 'bookmark-outline'
+                  }
                   size={21}
                   color="#A33757"
                 />
@@ -156,7 +174,7 @@ export default function FeedScreen() {
         ))}
       </ScrollView>
 
-      {/* Bottom Navigation Bar */}
+      
       <BottomNavBar activeTab="inicio" />
     </SafeAreaView>
   );
@@ -167,7 +185,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFEFEF',
   },
-  header: {
+  cabecalho: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -175,33 +193,33 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 12,
   },
-  logoRow: {
+  linhaLogo: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  logoIcon: {
-    width: 36,
-    height: 36,
-    marginRight: 6,
+  iconeLogo: {
+    width: 48,
+    height: 48,
+    marginRight: -4,
   },
-  logoText: {
-    fontSize: 26,
+  textoLogo: {
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#DE5169',
     letterSpacing: -0.5,
   },
-  searchBtn: {
+  botaoPesquisa: {
     padding: 6,
   },
-  feedList: {
+  listaFeed: {
     flex: 1,
   },
-  feedContent: {
+  conteudoFeed: {
     paddingHorizontal: 16,
     paddingTop: 6,
     paddingBottom: 20,
   },
-  postCard: {
+  cartaoPublicacao: {
     backgroundColor: '#FFFFFF',
     borderRadius: 14,
     borderWidth: 1.2,
@@ -216,12 +234,12 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
-  postHeader: {
+  cabecalhoPublicacao: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
   },
-  avatarPlaceholder: {
+  marcadorAvatar: {
     width: 34,
     height: 34,
     borderRadius: 17,
@@ -231,46 +249,60 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E8A8B5',
   },
-  username: {
+  nomeUsuario: {
     fontSize: 14,
     fontWeight: 'bold',
     color: '#2A1E22',
-    marginLeft: 10,
   },
-  postText: {
+  conteudoCabecalhoPost: {
+    marginLeft: 10,
+    justifyContent: 'center',
+  },
+  linhaLocalizacao: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 2,
+    gap: 3,
+  },
+  textoLocalizacao: {
+    fontSize: 11,
+    color: '#DC586D',
+    fontWeight: '600',
+  },
+  textoPublicacao: {
     fontSize: 15,
     lineHeight: 21,
     color: '#1A0E13',
     marginBottom: 14,
   },
-  postFooter: {
+  rodapePublicacao: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingTop: 2,
   },
-  leftActions: {
+  acoesEsquerda: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  actionBtn: {
+  botaoAcao: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  actionCount: {
+  contadorAcao: {
     fontSize: 13,
     fontWeight: 'bold',
     color: '#2A1E22',
     marginLeft: 6,
   },
-  avatarImage: {
+  imagemAvatar: {
     width: 36,
     height: 36,
     borderRadius: 18,
     borderWidth: 1.5,
     borderColor: '#DF5268',
   },
-  postImageWrapper: {
+  embrulhoImagemPost: {
     width: '100%',
     height: 220,
     borderRadius: 12,
@@ -278,7 +310,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     backgroundColor: '#FFE8EC',
   },
-  postImage: {
+  imagemPost: {
     width: '100%',
     height: '100%',
   },

@@ -16,7 +16,8 @@ import { colors } from '../theme/colors';
 export default function NavegacaoScreen() {
   const { navigate, goBack } = useNavigation();
 
-  const navItems = [
+  // Lista dos destinos de navegação disponíveis
+  const itensNavegacao = [
     {
       id: 'inicio',
       title: 'Início',
@@ -59,56 +60,56 @@ export default function NavegacaoScreen() {
       <StatusBar barStyle="dark-content" backgroundColor="#FFE9E8" />
 
       {/* Cabeçalho */}
-      <View style={styles.header}>
+      <View style={styles.cabecalho}>
         <TouchableOpacity
           onPress={goBack}
           activeOpacity={0.7}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          style={styles.backButton}
+          style={styles.botaoVoltar}
         >
           <Ionicons name="chevron-back" size={30} color="#A33757" />
         </TouchableOpacity>
 
-        <Text style={styles.headerTitle}>Navegação</Text>
+        <Text style={styles.tituloCabecalho}>Navegação</Text>
 
-        <View style={styles.headerSpacer} />
+        <View style={styles.espacadorCabecalho} />
       </View>
 
       <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
+        style={styles.rolagemTela}
+        contentContainerStyle={styles.conteudoRolagem}
         showsVerticalScrollIndicator={false}
       >
         {/* Subtítulo explicativo */}
-        <View style={styles.subtitleContainer}>
-          <Text style={styles.subtitleText}>
+        <View style={styles.containerSubtitulo}>
+          <Text style={styles.textoSubtitulo}>
             A navegação principal do app na{'\n'}barra inferior, através dos ícones.
           </Text>
         </View>
 
-        {/* Lista de Cartões Informativos de Navegação */}
-        <View style={styles.cardsContainer}>
-          {navItems.map((item) => (
+        {/* Cartões de navegação */}
+        <View style={styles.containerCartoes}>
+          {itensNavegacao.map((item) => (
             <TouchableOpacity
               key={item.id}
-              style={styles.navCard}
+              style={styles.cartaoNavegacao}
               onPress={item.action}
               activeOpacity={0.75}
             >
-              <View style={styles.iconContainer}>
+              <View style={styles.containerIcone}>
                 <Ionicons name={item.icon} size={28} color="#A33757" />
               </View>
 
-              <View style={styles.cardTextContainer}>
-                <Text style={styles.cardTitle}>{item.title}</Text>
-                <Text style={styles.cardDescription}>{item.description}</Text>
+              <View style={styles.containerTextoCartao}>
+                <Text style={styles.tituloCartao}>{item.title}</Text>
+                <Text style={styles.descricaoCartao}>{item.description}</Text>
               </View>
             </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
 
-      {/* Barra de Navegação Inferior */}
+      {/* Barra Inferior */}
       <BottomNavBar activeTab="buscar" />
     </SafeAreaView>
   );
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFE9E8',
   },
-  header: {
+  cabecalho: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -127,46 +128,46 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 8,
   },
-  backButton: {
+  botaoVoltar: {
     width: 36,
     height: 36,
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
-  headerTitle: {
+  tituloCabecalho: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#111111',
     textAlign: 'center',
   },
-  headerSpacer: {
+  espacadorCabecalho: {
     width: 36,
   },
-  scrollView: {
+  rolagemTela: {
     flex: 1,
   },
-  scrollContent: {
+  conteudoRolagem: {
     paddingHorizontal: 20,
     paddingTop: 8,
     paddingBottom: 24,
   },
-  subtitleContainer: {
+  containerSubtitulo: {
     alignItems: 'center',
     marginBottom: 20,
     paddingHorizontal: 10,
   },
-  subtitleText: {
+  textoSubtitulo: {
     fontSize: 14,
     color: '#615E5E',
     textAlign: 'center',
     lineHeight: 20,
     fontWeight: '500',
   },
-  cardsContainer: {
+  containerCartoes: {
     width: '100%',
     gap: 12,
   },
-  navCard: {
+  cartaoNavegacao: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
@@ -181,22 +182,22 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#F0B8C2',
   },
-  iconContainer: {
+  containerIcone: {
     width: 44,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 14,
   },
-  cardTextContainer: {
+  containerTextoCartao: {
     flex: 1,
   },
-  cardTitle: {
+  tituloCartao: {
     fontSize: 15,
     fontWeight: '700',
     color: '#111111',
     marginBottom: 2,
   },
-  cardDescription: {
+  descricaoCartao: {
     fontSize: 12,
     color: '#777777',
   },
