@@ -1,16 +1,16 @@
 {
   "profile": {
-    "name": "Rafa Linda",
-    "username": "linda",
-    "bio": "Novo no Socialy! 👋",
-    "bioEdit": "Novo no Socialy! 👋",
-    "avatar": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/85621867-a051-4142-8002-8647bd5ba8db.jpeg",
+    "name": "Kakakakakkama",
+    "username": "Blessed_carrinho",
+    "bio": "Abençoado 🛐",
+    "bioEdit": "Abençoado 🛐",
+    "avatar": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/7292570a-f6dd-42e9-acd2-92787d9ed4dc.jpeg",
     "stats": {
       "publicacoes": 0,
       "seguidores": 0,
       "seguindo": 0
     },
-    "id": "Tm1IRvvJZNo"
+    "id": "TNo8Z-ZZGZc"
   },
   "users": [
     {
@@ -29,7 +29,7 @@
     },
     {
       "id": "TNo8Z-ZZGZc",
-      "name": "Blessed_carrinho77k",
+      "name": "Kakakakakkama",
       "username": "Blessed_carrinho",
       "email": "julio@gmail.com",
       "password": "123",
@@ -66,9 +66,9 @@
       "content": "Tipo eh tipo uh tipo nd aver",
       "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&auto=format&fit=crop&q=80",
       "location": "São Paulo, SP",
-      "likes": 302,
-      "comments": 4,
-      "isLiked": true,
+      "likes": 301,
+      "comments": 5,
+      "isLiked": false,
       "isBookmarked": false,
       "time": "hoje às 13:20",
       "commentsList": [
@@ -97,6 +97,13 @@
           "authorAvatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80",
           "time": "agora mesmo",
           "text": "Sem noção isso"
+        },
+        {
+          "id": "1789760948954",
+          "author": "Blessed_carrinho77k",
+          "authorAvatar": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/7292570a-f6dd-42e9-acd2-92787d9ed4dc.jpeg",
+          "time": "agora mesmo",
+          "text": "Opa"
         }
       ]
     },
@@ -107,9 +114,9 @@
       "content": "Minhas roupas estão secando no varal já tem 3 dias e nada!!!!!",
       "image": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80",
       "location": "Rio de Janeiro, RJ",
-      "likes": 503,
+      "likes": 502,
       "comments": 3,
-      "isLiked": true,
+      "isLiked": false,
       "isBookmarked": false,
       "time": "hoje às 12:45",
       "commentsList": [
@@ -126,13 +133,6 @@
           "authorAvatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80",
           "time": "hoje às 13:20",
           "text": "Usa o secador de cabelo mulher kkkk"
-        },
-        {
-          "id": "1789740877379",
-          "author": "Blessed_carrinho77k",
-          "authorAvatar": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/7292570a-f6dd-42e9-acd2-92787d9ed4dc.jpeg",
-          "time": "agora mesmo",
-          "text": "ola"
         }
       ]
     },
@@ -143,9 +143,9 @@
       "content": "Frank Ocean volta nunca?",
       "image": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80",
       "location": null,
-      "likes": 102,
+      "likes": 101,
       "comments": 3,
-      "isLiked": true,
+      "isLiked": false,
       "isBookmarked": false,
       "time": "hoje às 10:15",
       "commentsList": [
@@ -185,10 +185,10 @@
         "latitude": -23.615073572422336,
         "longitude": -46.570826189356374
       },
-      "likes": 1,
+      "likes": 0,
       "comments": 2,
-      "isLiked": true,
-      "isBookmarked": true,
+      "isLiked": false,
+      "isBookmarked": false,
       "time": "agora mesmo",
       "commentsList": [
         {
@@ -220,9 +220,47 @@
         "latitude": -23.6151524,
         "longitude": -46.5708465
       },
-      "likes": 1,
+      "likes": 0,
       "comments": 0,
-      "isLiked": true,
+      "isLiked": false,
+      "isBookmarked": true,
+      "time": "agora mesmo"
+    },
+    {
+      "id": "VEmzSGot7EA",
+      "user": "Blessed_carrinho",
+      "avatar": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/7292570a-f6dd-42e9-acd2-92787d9ed4dc.jpeg",
+      "content": "Trampando...😇",
+      "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/96c61b5d-0021-4a1a-9039-b7d0ee2ec7a8.jpeg",
+      "location": "São Caetano do Sul, São Paulo",
+      "latitude": -23.6151871,
+      "longitude": -46.5708758,
+      "coords": {
+        "latitude": -23.6151871,
+        "longitude": -46.5708758
+      },
+      "likes": 0,
+      "comments": 0,
+      "isLiked": false,
+      "isBookmarked": false,
+      "time": "agora mesmo"
+    },
+    {
+      "id": "rMLl0E3ZSXM",
+      "user": "Blessed_carrinho",
+      "avatar": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/7292570a-f6dd-42e9-acd2-92787d9ed4dc.jpeg",
+      "content": "Isjdhakndj",
+      "image": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Fsocialy-0f78da63-914e-458b-a897-11b89f5ebbcf/ImagePicker/7a3ad13d-82d8-4566-be06-08f71f2bf28f.jpeg",
+      "location": "São Caetano do Sul, São Paulo",
+      "latitude": -23.6152253,
+      "longitude": -46.5708198,
+      "coords": {
+        "latitude": -23.6152253,
+        "longitude": -46.5708198
+      },
+      "likes": 0,
+      "comments": 0,
+      "isLiked": false,
       "isBookmarked": true,
       "time": "agora mesmo"
     }
@@ -338,6 +376,30 @@
       "user": "Ronaldo",
       "action": "curtiu sua publicação.",
       "targetPostId": "C09xbo_r9q8"
+    },
+    {
+      "id": "uauPCGDu7FU",
+      "time": "agora mesmo",
+      "type": "heart",
+      "user": "Lili_00",
+      "action": "curtiu sua publicação.",
+      "targetPostId": "VEmzSGot7EA"
+    },
+    {
+      "id": "dBNnT3f-XHM",
+      "time": "agora mesmo",
+      "type": "heart",
+      "user": "Ronaldo",
+      "action": "curtiu sua publicação.",
+      "targetPostId": "VEmzSGot7EA"
+    },
+    {
+      "id": "MFt3EH2yulY",
+      "time": "agora mesmo",
+      "type": "heart",
+      "user": "Ronaldo",
+      "action": "curtiu sua publicação.",
+      "targetPostId": "VEmzSGot7EA"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

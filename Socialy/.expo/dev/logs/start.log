@@ -1589,3 +1589,306 @@
 {"_e":"metro:bundling:started","_t":1789741735513,"id":"1p","platform":"web","environment":null,"entry":"src\\screens\\FeedScreen.jsx"}
 {"_e":"metro:bundling:started","_t":1789741737289,"id":"1q","platform":"web","environment":null,"entry":"src\\screens\\FeedScreen.jsx"}
 {"_e":"metro:bundling:started","_t":1789741740448,"id":"1r","platform":"web","environment":null,"entry":"src\\screens\\FeedScreen.jsx"}
+{"_e":"root:init","_t":1789742029147,"format":"v0-jsonl","version":"57.0.25"}
+{"_e":"env:mode","_t":1789742029153,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1789742029159,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1789742031387,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1789742033526,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1789742034746,"plugins":[]}
+{"_e":"metro:instantiate","_t":1789742041378,"atlas":false,"workers":10,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1789742070836,"id":"3","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789742070836,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789742070839,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789742070940,"id":"3","progress":0.015410225921521997,"total":145,"current":18}
+{"_e":"metro:bundling:progress","_t":1789742071057,"id":"3","progress":0.017170035671819267,"total":145,"current":19}
+{"_e":"metro:bundling:progress","_t":1789742071157,"id":"3","progress":0.1377105712890625,"total":256,"current":95}
+{"_e":"metro:bundling:progress","_t":1789742071257,"id":"3","progress":0.19071462906585482,"total":316,"current":138}
+{"_e":"metro:bundling:progress","_t":1789742071358,"id":"3","progress":0.36619464582059574,"total":428,"current":259}
+{"_e":"metro:bundling:progress","_t":1789742071459,"id":"3","progress":0.36619464582059574,"total":516,"current":309}
+{"_e":"metro:bundling:progress","_t":1789742071549,"id":"3","progress":0.36619464582059574,"total":516,"current":310}
+{"_e":"metro:bundling:progress","_t":1789742071650,"id":"3","progress":0.723347424421364,"total":602,"current":512}
+{"_e":"metro:bundling:progress","_t":1789742071750,"id":"3","progress":0.8036220720563007,"total":676,"current":606}
+{"_e":"metro:bundling:progress","_t":1789742071850,"id":"3","progress":0.8522559271918404,"total":768,"current":709}
+{"_e":"metro:bundling:progress","_t":1789742071950,"id":"3","progress":0.9853660509761208,"total":817,"current":811}
+{"_e":"metro:bundling:progress","_t":1789742072062,"id":"3","progress":0.9902320487678449,"total":817,"current":813}
+{"_e":"metro:bundling:progress","_t":1789742073688,"id":"3","progress":0.9926695421197953,"total":817,"current":814}
+{"_e":"metro:bundling:done","_t":1789742073777,"id":"3","total":817,"ms":2940.7663}
+{"_e":"metro:client_log","_t":1789742083904,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
+{"_e":"metro:client_log","_t":1789742229244,"level":"warn","data":["Erro ao obter nome do endereço:","[Error: Call to function 'ExpoLocation.reverseGeocodeAsync' has been rejected.\n→ Caused by: An exception occurred when accessing the geocode: Geocoder is not running ]"]}
+{"_e":"metro:bundling:started","_t":1789743319440,"id":"6","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789743319441,"id":"6","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789743319442,"id":"6","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789743319543,"id":"6","progress":0.03140522352187149,"total":79,"current":14}
+{"_e":"metro:bundling:progress","_t":1789743319642,"id":"6","progress":0.2743764172335601,"total":126,"current":66}
+{"_e":"metro:bundling:progress","_t":1789743319744,"id":"6","progress":0.4373048907388137,"total":186,"current":123}
+{"_e":"metro:bundling:progress","_t":1789743319845,"id":"6","progress":0.524176,"total":250,"current":181}
+{"_e":"metro:bundling:progress","_t":1789743319945,"id":"6","progress":0.8135332564398309,"total":306,"current":276}
+{"_e":"metro:bundling:progress","_t":1789743320045,"id":"6","progress":0.9713891818717869,"total":347,"current":342}
+{"_e":"metro:bundling:progress","_t":1789743320154,"id":"6","progress":0.9770781253892982,"total":347,"current":343}
+{"_e":"metro:bundling:progress","_t":1789743320596,"id":"6","progress":0.9827836789608749,"total":347,"current":344}
+{"_e":"metro:bundling:done","_t":1789743320712,"id":"6","total":347,"ms":1271.8929}
+{"_e":"metro:bundling:started","_t":1789743320824,"id":"8","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:client_log","_t":1789743320885,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1789743320886,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:client_log","_t":1789743363546,"level":"warn","data":["props.pointerEvents is deprecated. Use style.pointerEvents"]}
+{"_e":"metro:bundling:started","_t":1789751527485,"id":"g","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789751527486,"id":"g","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1789751527502,"id":"g","total":1,"ms":16.4248}
+{"_e":"metro:bundling:started","_t":1789751527620,"id":"i","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:client_log","_t":1789751527664,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1789751527664,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:client_log","_t":1789751529927,"level":"warn","data":["props.pointerEvents is deprecated. Use style.pointerEvents"]}
+{"_e":"root:init","_t":1789752179831,"format":"v0-jsonl","version":"57.0.25"}
+{"_e":"env:mode","_t":1789752179837,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1789752179846,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1789752182720,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1789752185424,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1789752186819,"plugins":[]}
+{"_e":"metro:instantiate","_t":1789752193497,"atlas":false,"workers":10,"host":"::","port":8081}
+{"_e":"root:init","_t":1789752200514,"format":"v0-jsonl","version":"57.0.25"}
+{"_e":"env:mode","_t":1789752200515,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1789752200520,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1789752203607,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1789752204098,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1789752204476,"plugins":[]}
+{"_e":"metro:instantiate","_t":1789752210285,"atlas":false,"workers":10,"host":"::","port":8082}
+{"_e":"root:init","_t":1789752442727,"format":"v0-jsonl","version":"57.0.25"}
+{"_e":"env:mode","_t":1789752442729,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1789752442734,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1789752443362,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1789752443985,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1789752444411,"plugins":[]}
+{"_e":"metro:instantiate","_t":1789752450328,"atlas":false,"workers":10,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1789752454802,"id":"3","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789752454802,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789752454806,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789752454907,"id":"3","progress":0.011080332409972297,"total":171,"current":18}
+{"_e":"metro:bundling:progress","_t":1789752455049,"id":"3","progress":0.012345679012345678,"total":171,"current":19}
+{"_e":"metro:bundling:progress","_t":1789752455149,"id":"3","progress":0.11207939508506617,"total":230,"current":77}
+{"_e":"metro:bundling:progress","_t":1789752455253,"id":"3","progress":0.18959436826840592,"total":271,"current":118}
+{"_e":"metro:bundling:progress","_t":1789752455353,"id":"3","progress":0.23074816768740702,"total":331,"current":159}
+{"_e":"metro:bundling:progress","_t":1789752455454,"id":"3","progress":0.28738441917313207,"total":388,"current":208}
+{"_e":"metro:bundling:progress","_t":1789752455555,"id":"3","progress":0.35398415449627946,"total":437,"current":260}
+{"_e":"metro:bundling:progress","_t":1789752455655,"id":"3","progress":0.3706114154186819,"total":524,"current":319}
+{"_e":"metro:bundling:progress","_t":1789752455755,"id":"3","progress":0.4231076949951961,"total":535,"current":348}
+{"_e":"metro:bundling:progress","_t":1789752455855,"id":"3","progress":0.5880295836130726,"total":609,"current":467}
+{"_e":"metro:bundling:progress","_t":1789752455955,"id":"3","progress":0.7512803088604447,"total":683,"current":592}
+{"_e":"metro:bundling:progress","_t":1789752456055,"id":"3","progress":0.7512803088604447,"total":715,"current":617}
+{"_e":"metro:bundling:progress","_t":1789752456155,"id":"3","progress":0.8468811141014139,"total":765,"current":704}
+{"_e":"metro:bundling:progress","_t":1789752456265,"id":"3","progress":0.9753095945372477,"total":805,"current":795}
+{"_e":"metro:bundling:progress","_t":1789752458859,"id":"3","progress":0.9777647467304502,"total":805,"current":796}
+{"_e":"metro:bundling:progress","_t":1789752458962,"id":"3","progress":0.980488273740869,"total":816,"current":808}
+{"_e":"metro:bundling:done","_t":1789752459062,"id":"3","total":816,"ms":4260.7372}
+{"_e":"metro:client_log","_t":1789752463437,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
+{"_e":"metro:bundling:started","_t":1789752616140,"id":"5","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789752616140,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1789752616171,"id":"5","total":1,"ms":30.833}
+{"_e":"metro:client_log","_t":1789752618677,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
+{"_e":"root:init","_t":1789753108296,"format":"v0-jsonl","version":"57.0.25"}
+{"_e":"env:mode","_t":1789753108303,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1789753108311,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1789753111015,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1789753112222,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1789753113338,"plugins":[]}
+{"_e":"metro:instantiate","_t":1789753120185,"atlas":false,"workers":10,"host":"::","port":8081}
+{"_e":"root:init","_t":1789753170644,"format":"v0-jsonl","version":"57.0.25"}
+{"_e":"env:mode","_t":1789753170646,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1789753170650,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1789753171270,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1789753171860,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1789753172281,"plugins":[]}
+{"_e":"metro:instantiate","_t":1789753177942,"atlas":false,"workers":10,"host":"::","port":8081}
+{"_e":"root:init","_t":1789753233013,"format":"v0-jsonl","version":"57.0.25"}
+{"_e":"env:mode","_t":1789753233015,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1789753233019,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1789753233644,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1789753234258,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1789753234701,"plugins":[]}
+{"_e":"metro:instantiate","_t":1789753240612,"atlas":false,"workers":10,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1789753246726,"id":"3","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789753246726,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789753246728,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789753246828,"id":"3","progress":0.015397730299962704,"total":137,"current":17}
+{"_e":"metro:bundling:progress","_t":1789753246928,"id":"3","progress":0.18842857290557374,"total":311,"current":135}
+{"_e":"metro:bundling:progress","_t":1789753247028,"id":"3","progress":0.3773818322668363,"total":503,"current":309}
+{"_e":"metro:bundling:progress","_t":1789753247128,"id":"3","progress":0.4404779810612485,"total":559,"current":371}
+{"_e":"metro:bundling:progress","_t":1789753247229,"id":"3","progress":0.8390901900839038,"total":643,"current":589}
+{"_e":"metro:bundling:progress","_t":1789753247329,"id":"3","progress":0.8423052297560666,"total":754,"current":692}
+{"_e":"metro:bundling:progress","_t":1789753247429,"id":"3","progress":0.999,"total":817,"current":817}
+{"_e":"metro:bundling:done","_t":1789753247503,"id":"3","total":817,"ms":777.0246}
+{"_e":"metro:bundling:started","_t":1789753283067,"id":"4","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789753283067,"id":"4","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1789753283108,"id":"4","total":1,"ms":40.721}
+{"_e":"metro:client_log","_t":1789753495733,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
+{"_e":"metro:bundling:started","_t":1789753548894,"id":"6","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789753548894,"id":"6","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789753548896,"id":"6","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789753549001,"id":"6","progress":0.033611111111111105,"total":60,"current":11}
+{"_e":"metro:bundling:progress","_t":1789753549101,"id":"6","progress":0.033611111111111105,"total":90,"current":16}
+{"_e":"metro:bundling:progress","_t":1789753549203,"id":"6","progress":0.22347107438016528,"total":110,"current":52}
+{"_e":"metro:bundling:progress","_t":1789753549305,"id":"6","progress":0.3041198096885814,"total":136,"current":75}
+{"_e":"metro:bundling:progress","_t":1789753549407,"id":"6","progress":0.39889196675900274,"total":171,"current":108}
+{"_e":"metro:bundling:progress","_t":1789753549509,"id":"6","progress":0.40294896030245747,"total":230,"current":146}
+{"_e":"metro:bundling:progress","_t":1789753549688,"id":"6","progress":0.40294896030245747,"total":230,"current":146}
+{"_e":"metro:bundling:progress","_t":1789753549982,"id":"6","progress":0.4084877126654064,"total":230,"current":147}
+{"_e":"metro:bundling:progress","_t":1789753550083,"id":"6","progress":0.72052460789616,"total":258,"current":219}
+{"_e":"metro:bundling:progress","_t":1789753550186,"id":"6","progress":0.72052460789616,"total":258,"current":219}
+{"_e":"metro:bundling:progress","_t":1789753550287,"id":"6","progress":0.72052460789616,"total":258,"current":219}
+{"_e":"metro:bundling:progress","_t":1789753550387,"id":"6","progress":0.72052460789616,"total":258,"current":219}
+{"_e":"metro:bundling:progress","_t":1789753550487,"id":"6","progress":0.72052460789616,"total":258,"current":219}
+{"_e":"metro:bundling:progress","_t":1789753550588,"id":"6","progress":0.72052460789616,"total":258,"current":219}
+{"_e":"metro:bundling:progress","_t":1789753550687,"id":"6","progress":0.776492500735222,"total":303,"current":267}
+{"_e":"metro:bundling:progress","_t":1789753550787,"id":"6","progress":0.87890625,"total":336,"current":315}
+{"_e":"metro:bundling:progress","_t":1789753550891,"id":"6","progress":0.9474545709183851,"total":338,"current":329}
+{"_e":"metro:bundling:progress","_t":1789753552404,"id":"6","progress":0.9532229263681243,"total":338,"current":330}
+{"_e":"metro:bundling:progress","_t":1789753552507,"id":"6","progress":0.999,"total":356,"current":356}
+{"_e":"metro:bundling:done","_t":1789753552536,"id":"6","total":356,"ms":3641.3262}
+{"_e":"metro:client_log","_t":1789753552673,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1789753552673,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1789753552673,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:client_log","_t":1789753554580,"level":"warn","data":["props.pointerEvents is deprecated. Use style.pointerEvents"]}
+{"_e":"metro:bundling:started","_t":1789753556826,"id":"e","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:failed","_t":1789753664252,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: 'return' outside of function. (248:2)\n\n  246 |   };\n  247 |\n> 248 |   return (\n      |   ^\n  249 |     <SafeAreaView style={styles.container}>\n  250 |       <StatusBar barStyle=\"dark-content\" backgroundColor=\"#FFE9E8\" />\n  251 |       <KeyboardAvoidingView","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1789753664254,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: 'return' outside of function. (248:2)\n\n  246 |   };\n  247 |\n> 248 |   return (\n      |   ^\n  249 |     <SafeAreaView style={styles.container}>\n  250 |       <StatusBar barStyle=\"dark-content\" backgroundColor=\"#FFE9E8\" />\n  251 |       <KeyboardAvoidingView","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:client_log","_t":1789753664256,"level":"error","data":["[TransformError: SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: 'return' outside of function. (248:2)\n\n  246 |   };\n  247 |\n> 248 |   return (\n      |   ^\n  249 |     <SafeAreaView style={styles.container}>\n  250 |       <StatusBar barStyle=\"dark-content\" backgroundColor=\"#FFE9E8\" />\n  251 |       <KeyboardAvoidingView]"]}
+{"_e":"metro:bundling:failed","_t":1789753664430,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: 'return' outside of function. (248:2)\n\n  246 |   };\n  247 |\n> 248 |   return (\n      |   ^\n  249 |     <SafeAreaView style={styles.container}>\n  250 |       <StatusBar barStyle=\"dark-content\" backgroundColor=\"#FFE9E8\" />\n  251 |       <KeyboardAvoidingView","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1789753664437,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: 'return' outside of function. (248:2)\n\n  246 |   };\n  247 |\n> 248 |   return (\n      |   ^\n  249 |     <SafeAreaView style={styles.container}>\n  250 |       <StatusBar barStyle=\"dark-content\" backgroundColor=\"#FFE9E8\" />\n  251 |       <KeyboardAvoidingView","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:client_log","_t":1789753664438,"level":"error","data":["[TransformError: SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: 'return' outside of function. (248:2)\n\n  246 |   };\n  247 |\n> 248 |   return (\n      |   ^\n  249 |     <SafeAreaView style={styles.container}>\n  250 |       <StatusBar barStyle=\"dark-content\" backgroundColor=\"#FFE9E8\" />\n  251 |       <KeyboardAvoidingView]"]}
+{"_e":"metro:bundling:started","_t":1789753669869,"id":"g","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:client_log","_t":1789753670149,"level":"error","data":["[ReferenceError: Property 'selecionarSentimento' doesn't exist]"]}
+{"_e":"metro:client_log","_t":1789753670730,"level":"warn","data":["An error occurred in the <NovaPublicacaoScreen> component.\n\nConsider adding an error boundary to your tree to customize error handling behavior.\nVisit https://react.dev/link/error-boundaries to learn more about error boundaries.\n"]}
+{"_e":"metro:client_log","_t":1789753670748,"level":"error","data":["[ReferenceError: selecionarSentimento is not defined]","\n\n\u001b[1mCode: NovaPublicacaoScreen.jsx\u001b[22m\n\u001b[0m \u001b[90m 399 |\u001b[39m               \u001b[33m<\u001b[39m\u001b[33mTouchableOpacity\u001b[39m\n \u001b[90m 400 |\u001b[39m                 style\u001b[33m=\u001b[39m{styles\u001b[33m.\u001b[39mitemOpcao}\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 401 |\u001b[39m                 onPress\u001b[33m=\u001b[39m{selecionarSentimento}\n \u001b[90m     |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 402 |\u001b[39m                 activeOpacity\u001b[33m=\u001b[39m{\u001b[35m0.7\u001b[39m}\n \u001b[90m 403 |\u001b[39m               \u001b[33m>\u001b[39m\n \u001b[90m 404 |\u001b[39m                 \u001b[33m<\u001b[39m\u001b[33mIonicons\u001b[39m name\u001b[33m=\u001b[39m\u001b[32m\"happy-outline\"\u001b[39m size\u001b[33m=\u001b[39m{\u001b[35m20\u001b[39m} color\u001b[33m=\u001b[39m\u001b[32m\"#DC586D\"\u001b[39m \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[1mCall Stack\u001b[22m\n\u001b[90m  NovaPublicacaoScreen (src\\screens\\NovaPublicacaoScreen.jsx:401:26)\u001b[39m","\n\n\u001b[1mCode: App.jsx\u001b[22m\n\u001b[0m \u001b[90m 31 |\u001b[39m         \u001b[36mreturn\u001b[39m \u001b[33m<\u001b[39m\u001b[33mPublicacaoScreen\u001b[39m \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m       \u001b[36mcase\u001b[39m \u001b[32m'NovaPublicacao'\u001b[39m\u001b[33m:\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 33 |\u001b[39m         \u001b[36mreturn\u001b[39m \u001b[33m<\u001b[39m\u001b[33mNovaPublicacaoScreen\u001b[39m \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 34 |\u001b[39m       \u001b[36mcase\u001b[39m \u001b[32m'Perfil'\u001b[39m\u001b[33m:\u001b[39m\n \u001b[90m 35 |\u001b[39m         \u001b[36mreturn\u001b[39m \u001b[33m<\u001b[39m\u001b[33mPerfilScreen\u001b[39m \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 36 |\u001b[39m       \u001b[36mcase\u001b[39m \u001b[32m'EditarPerfil'\u001b[39m\u001b[33m:\u001b[39m\u001b[0m\n\u001b[1mCall Stack\u001b[22m\n\u001b[90m  renderCurrentScreen (App.jsx:33:16)\u001b[39m\n\u001b[90m  MainApp (App.jsx:49:8)\u001b[39m\n\u001b[90m  App (App.jsx:58:9)\u001b[39m"]}
+{"_e":"metro:bundling:started","_t":1789753706501,"id":"l","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:client_log","_t":1789753715114,"level":"error","data":["[ReferenceError: Property 'selecionarSentimento' doesn't exist]"]}
+{"_e":"metro:bundling:started","_t":1789753725997,"id":"p","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789753759686,"id":"q","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789753761201,"id":"r","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789753762706,"id":"s","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789753764301,"id":"t","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789753765496,"id":"u","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789753791163,"id":"v","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:failed","_t":1789753813182,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           {/* Botão Publicar */}\n  402 |           <TouchableOpacity","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1789753813186,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           {/* Botão Publicar */}\n  402 |           <TouchableOpacity","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:client_log","_t":1789753813188,"level":"error","data":["[TransformError: SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           {/* Botão Publicar */}\n  402 |           <TouchableOpacity]"]}
+{"_e":"metro:bundling:failed","_t":1789753821128,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (401:10)\n\n  399 |               </TouchableOpacity>\n  400 |             </View>\n> 401 |           </View>\n      |           ^\n  402 |\n  403 |           {/* Botão Publicar */}\n  404 |           <TouchableOpacity","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:client_log","_t":1789753821129,"level":"error","data":["[TransformError: SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (401:10)\n\n  399 |               </TouchableOpacity>\n  400 |             </View>\n> 401 |           </View>\n      |           ^\n  402 |\n  403 |           {/* Botão Publicar */}\n  404 |           <TouchableOpacity]"]}
+{"_e":"metro:bundling:failed","_t":1789753821133,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (401:10)\n\n  399 |               </TouchableOpacity>\n  400 |             </View>\n> 401 |           </View>\n      |           ^\n  402 |\n  403 |           {/* Botão Publicar */}\n  404 |           <TouchableOpacity","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1789753826737,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (360:12)\n\n  358 |                 thumbColor={gpsAutomaticoNaFoto ? '#DC586D' : '#F4F3F4'}\n  359 |               />\n> 360 |             </View>\n      |             ^\n  361 |\n  362 |             {/* Linha de Botões de Opções */}\n  363 |             <View style={styles.linhaOpcoes}>","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1789753826740,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (360:12)\n\n  358 |                 thumbColor={gpsAutomaticoNaFoto ? '#DC586D' : '#F4F3F4'}\n  359 |               />\n> 360 |             </View>\n      |             ^\n  361 |\n  362 |             {/* Linha de Botões de Opções */}\n  363 |             <View style={styles.linhaOpcoes}>","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:client_log","_t":1789753826741,"level":"error","data":["[TransformError: SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (360:12)\n\n  358 |                 thumbColor={gpsAutomaticoNaFoto ? '#DC586D' : '#F4F3F4'}\n  359 |               />\n> 360 |             </View>\n      |             ^\n  361 |\n  362 |             {/* Linha de Botões de Opções */}\n  363 |             <View style={styles.linhaOpcoes}>]"]}
+{"_e":"metro:bundling:failed","_t":1789753831261,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           {/* Botão Publicar */}\n  402 |           <TouchableOpacity","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1789753831266,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           {/* Botão Publicar */}\n  402 |           <TouchableOpacity","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:client_log","_t":1789753831267,"level":"error","data":["[TransformError: SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           {/* Botão Publicar */}\n  402 |           <TouchableOpacity]"]}
+{"_e":"metro:bundling:failed","_t":1789753852215,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           {/* Botão Publicar */}\n  402 |           <TouchableOpacity","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1789753852219,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           {/* Botão Publicar */}\n  402 |           <TouchableOpacity","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:client_log","_t":1789753852220,"level":"error","data":["[TransformError: SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           {/* Botão Publicar */}\n  402 |           <TouchableOpacity]"]}
+{"_e":"metro:bundling:started","_t":1789753858064,"id":"w","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789753860441,"id":"x","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:failed","_t":1789753866412,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           {/* Botão Publicar */}\n  402 |           <TouchableOpacity","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:client_log","_t":1789753866413,"level":"error","data":["[TransformError: SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           {/* Botão Publicar */}\n  402 |           <TouchableOpacity]"]}
+{"_e":"metro:bundling:failed","_t":1789753866416,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           {/* Botão Publicar */}\n  402 |           <TouchableOpacity","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1789753868383,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           <TouchableOpacity\n  402 |             style={styles.botaoPublicar}","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1789753868387,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           <TouchableOpacity\n  402 |             style={styles.botaoPublicar}","importStack":null,"filename":"src\\screens\\NovaPublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:client_log","_t":1789753868388,"level":"error","data":["[TransformError: SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\NovaPublicacaoScreen.jsx: Expected corresponding JSX closing tag for <ScrollView>. (399:10)\n\n  397 |               </TouchableOpacity>\n  398 |             </View>\n> 399 |           </View>\n      |           ^\n  400 |\n  401 |           <TouchableOpacity\n  402 |             style={styles.botaoPublicar}]"]}
+{"_e":"metro:bundling:started","_t":1789753873830,"id":"y","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789753910021,"id":"z","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789753914329,"id":"10","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789753994976,"id":"12","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789753994977,"id":"12","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1789753995001,"id":"12","total":1,"ms":24.4592}
+{"_e":"metro:client_log","_t":1789753995385,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1789753995386,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1789753995386,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1789754410681,"id":"14","platform":"web","environment":null,"entry":"src\\components\\BottomNavBar.jsx"}
+{"_e":"metro:bundling:started","_t":1789754412210,"id":"15","platform":"web","environment":null,"entry":"src\\components\\BottomNavBar.jsx"}
+{"_e":"metro:bundling:started","_t":1789754414276,"id":"16","platform":"web","environment":null,"entry":"src\\components\\BottomNavBar.jsx"}
+{"_e":"metro:bundling:started","_t":1789754415762,"id":"17","platform":"web","environment":null,"entry":"src\\components\\BottomNavBar.jsx"}
+{"_e":"metro:bundling:started","_t":1789754419656,"id":"18","platform":"web","environment":null,"entry":"src\\components\\BottomNavBar.jsx"}
+{"_e":"metro:bundling:started","_t":1789754595250,"id":"19","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789754595251,"id":"19","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1789754595293,"id":"19","total":1,"ms":42.1908}
+{"_e":"metro:client_log","_t":1789754597774,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
+{"_e":"metro:bundling:started","_t":1789754631751,"id":"1b","platform":"web","environment":null,"entry":"src\\screens\\LoginScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789754633984,"id":"1c","platform":"web","environment":null,"entry":"src\\screens\\LoginScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789756330843,"id":"1d","platform":"web","environment":null,"entry":"src\\screens\\CriarContaScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789756332638,"id":"1e","platform":"web","environment":null,"entry":"src\\screens\\CriarContaScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789756333858,"id":"1f","platform":"web","environment":null,"entry":"src\\screens\\CriarContaScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789756335485,"id":"1g","platform":"web","environment":null,"entry":"src\\screens\\CriarContaScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789756338118,"id":"1h","platform":"web","environment":null,"entry":"src\\screens\\CriarContaScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789756340280,"id":"1i","platform":"web","environment":null,"entry":"src\\screens\\CriarContaScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789756341681,"id":"1j","platform":"web","environment":null,"entry":"src\\screens\\CriarContaScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789756344742,"id":"1k","platform":"web","environment":null,"entry":"src\\screens\\CriarContaScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789756346204,"id":"1l","platform":"web","environment":null,"entry":"src\\screens\\CriarContaScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789756376880,"id":"1m","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789756378345,"id":"1n","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789756380213,"id":"1o","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789756382464,"id":"1p","platform":"web","environment":null,"entry":"src\\screens\\NovaPublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789757468129,"id":"1s","platform":"web","environment":null,"entry":"src\\theme\\colors.js"}
+{"_e":"metro:bundling:started","_t":1789757573681,"id":"1t","platform":"web","environment":null,"entry":"src\\styles\\TelaInicialStyle.js"}
+{"_e":"metro:bundling:started","_t":1789757573682,"id":"1u","platform":"web","environment":null,"entry":"src\\screens\\TelaInicialScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789757583989,"id":"1v","platform":"web","environment":null,"entry":"src\\styles\\LoginScreenStyle.js"}
+{"_e":"metro:bundling:started","_t":1789757583989,"id":"1w","platform":"web","environment":null,"entry":"src\\screens\\LoginScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789757595697,"id":"1x","platform":"web","environment":null,"entry":"src\\styles\\CriarContaScreenStyle.js"}
+{"_e":"metro:bundling:started","_t":1789757595698,"id":"1y","platform":"web","environment":null,"entry":"src\\screens\\CriarContaScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789757607389,"id":"1z","platform":"web","environment":null,"entry":"src\\styles\\FeedScreenStyle.js"}
+{"_e":"metro:bundling:started","_t":1789757607389,"id":"20","platform":"web","environment":null,"entry":"src\\screens\\FeedScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789757641537,"id":"21","platform":"web","environment":null,"entry":"src\\styles\\PublicacaoScreenStyle.js"}
+{"_e":"metro:bundling:started","_t":1789757641538,"id":"22","platform":"web","environment":null,"entry":"src\\screens\\PublicacaoScreen.jsx"}
+{"_e":"metro:bundling:started","_t":1789757855197,"id":"23","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789757855197,"id":"23","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789757855198,"id":"23","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789757855298,"id":"23","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789757855880,"id":"23","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789757855980,"id":"23","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789757856080,"id":"23","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789757856181,"id":"23","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1789757856253,"id":"23","total":1,"ms":1055.7059}
+{"_e":"metro:client_log","_t":1789757859010,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
+{"_e":"root:init","_t":1789758597966,"format":"v0-jsonl","version":"57.0.25"}
+{"_e":"env:mode","_t":1789758597972,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1789758597981,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1789758600822,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1789758602647,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1789758603962,"plugins":[]}
+{"_e":"metro:instantiate","_t":1789758610883,"atlas":false,"workers":10,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1789758625283,"id":"1","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789758625283,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789758625287,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789758625387,"id":"1","progress":0.013374057105835533,"total":147,"current":17}
+{"_e":"metro:bundling:progress","_t":1789758625487,"id":"1","progress":0.18916541565021583,"total":292,"current":127}
+{"_e":"metro:bundling:progress","_t":1789758625587,"id":"1","progress":0.3637819832407625,"total":509,"current":307}
+{"_e":"metro:bundling:progress","_t":1789758625687,"id":"1","progress":0.41694693877551015,"total":525,"current":339}
+{"_e":"metro:bundling:progress","_t":1789758625787,"id":"1","progress":0.7862925608236194,"total":618,"current":548}
+{"_e":"metro:bundling:progress","_t":1789758625887,"id":"1","progress":0.8556904185063888,"total":707,"current":654}
+{"_e":"metro:bundling:progress","_t":1789758625991,"id":"1","progress":0.921214110754779,"total":796,"current":764}
+{"_e":"metro:bundling:progress","_t":1789758626093,"id":"1","progress":0.9975859996732712,"total":828,"current":827}
+{"_e":"metro:bundling:progress","_t":1789758627715,"id":"1","progress":0.999,"total":828,"current":828}
+{"_e":"metro:bundling:done","_t":1789758627804,"id":"1","total":828,"ms":2520.4201}
+{"_e":"metro:client_log","_t":1789758638790,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
+{"_e":"metro:client_log","_t":1789758778731,"level":"error","data":["[ReferenceError: Property 'P' doesn't exist]"]}
+{"_e":"metro:bundling:started","_t":1789759480978,"id":"4","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789759480978,"id":"4","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789759480980,"id":"4","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1789759481081,"id":"4","progress":0.10437869822485209,"total":65,"current":21}
+{"_e":"metro:bundling:progress","_t":1789759481182,"id":"4","progress":0.3066047401133803,"total":121,"current":67}
+{"_e":"metro:bundling:progress","_t":1789759481283,"id":"4","progress":0.3397224489795918,"total":175,"current":102}
+{"_e":"metro:bundling:progress","_t":1789759481383,"id":"4","progress":0.4861543641107651,"total":218,"current":152}
+{"_e":"metro:bundling:progress","_t":1789759481483,"id":"4","progress":0.49734072176431277,"total":268,"current":189}
+{"_e":"metro:bundling:progress","_t":1789759481585,"id":"4","progress":0.8605771132471026,"total":318,"current":295}
+{"_e":"metro:bundling:progress","_t":1789759481687,"id":"4","progress":0.9441452864560346,"total":353,"current":343}
+{"_e":"metro:bundling:progress","_t":1789759481792,"id":"4","progress":0.9551878275244967,"total":353,"current":345}
+{"_e":"metro:bundling:progress","_t":1789759485994,"id":"4","progress":0.9607331733662897,"total":353,"current":346}
+{"_e":"metro:bundling:progress","_t":1789759486094,"id":"4","progress":0.9777784713336038,"total":358,"current":354}
+{"_e":"metro:bundling:progress","_t":1789759486203,"id":"4","progress":0.999,"total":368,"current":368}
+{"_e":"metro:bundling:done","_t":1789759486231,"id":"4","total":368,"ms":5252.6256}
+{"_e":"metro:client_log","_t":1789759486453,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1789759486453,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1789759486453,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1789759727085,"id":"7","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789759727085,"id":"7","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1789759727115,"id":"7","total":1,"ms":29.7971}
+{"_e":"metro:bundling:started","_t":1789759841586,"id":"8","platform":"android","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1789759841586,"id":"8","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1789759841618,"id":"8","total":1,"ms":32.1056}
+{"_e":"metro:bundling:failed","_t":1789760274115,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\PublicacaoScreen.jsx: Unterminated regular expression. (19:1)\n\n  17 | import styles from '../styles/PublicacaoScreenStyle';\n  18 |\n> 19 | /\n     |  ^\n  20 | // AQUI FICA A TELA DE DETALHES DA PUBLICAÇÃO E SEUS COMENTÁRIOS\n  21 |\n  22 | export default function PublicacaoScreen() {","importStack":null,"filename":"src\\screens\\PublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1789760274308,"id":null,"message":"SyntaxError: C:\\Users\\56753478876\\Desktop\\SocialyRepository\\Socialy\\src\\screens\\PublicacaoScreen.jsx: Unterminated regular expression. (19:1)\n\n  17 | import styles from '../styles/PublicacaoScreenStyle';\n  18 |\n> 19 | /\n     |  ^\n  20 | // AQUI FICA A TELA DE DETALHES DA PUBLICAÇÃO E SEUS COMENTÁRIOS\n  21 |\n  22 | export default function PublicacaoScreen() {","importStack":null,"filename":"src\\screens\\PublicacaoScreen.jsx","targetModuleName":null,"originModulePath":null}

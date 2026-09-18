@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  StyleSheet,
   SafeAreaView,
   StatusBar,
 } from 'react-native';
@@ -12,11 +11,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '../context/NavigationContext';
 import BottomNavBar from '../components/BottomNavBar';
 import { colors } from '../theme/colors';
+import styles from '../styles/NotificacoesScreenStyle';
 
 export default function NotificacoesScreen() {
   const { notifications, navigate, goBack, setSelectedPost, feedPosts } = useNavigation();
 
-  // Função para navegar até a publicação ou perfil ao tocar na notificação
   const abrirDetalheNotificacao = (notificacao) => {
     if (notificacao.type === 'heart') {
       const publicacaoReal = feedPosts?.find(
@@ -81,9 +80,8 @@ export default function NotificacoesScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#FFE9E8" />
+      <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
 
-      {/* Cabeçalho */}
       <View style={styles.cabecalho}>
         <TouchableOpacity
           onPress={goBack}
@@ -91,7 +89,7 @@ export default function NotificacoesScreen() {
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           style={styles.botaoVoltar}
         >
-          <Ionicons name="chevron-back" size={30} color="#A33757" />
+          <Ionicons name="chevron-back" size={30} color={colors.maroon} />
         </TouchableOpacity>
 
         <Text style={styles.tituloCabecalho}>Notificações</Text>
@@ -104,7 +102,6 @@ export default function NotificacoesScreen() {
         contentContainerStyle={styles.conteudoRolagem}
         showsVerticalScrollIndicator={false}
       >
-        {/* Lista de Notificações */}
         <View style={styles.listaNotificacoes}>
           {notifications.map((notificacao) => (
             <TouchableOpacity
@@ -113,16 +110,14 @@ export default function NotificacoesScreen() {
               onPress={() => abrirDetalheNotificacao(notificacao)}
               activeOpacity={0.75}
             >
-              {/* Ícone */}
               <View style={styles.iconeContainer}>
                 <Ionicons
                   name={notificacao.type === 'heart' ? 'heart' : 'person'}
                   size={22}
-                  color="#A33757"
+                  color={colors.maroon}
                 />
               </View>
 
-              {/* Texto da Notificação */}
               <View style={styles.conteudoTexto}>
                 <Text style={styles.textoNotificacao}>
                   <Text style={styles.nomeUsuario}>{notificacao.user} </Text>
@@ -131,100 +126,13 @@ export default function NotificacoesScreen() {
                 <Text style={styles.textoHorario}>{notificacao.time}</Text>
               </View>
 
-              {/* Seta indicativa */}
-              <Ionicons name="chevron-forward" size={20} color="#DC586D" />
+              <Ionicons name="chevron-forward" size={20} color={colors.primaryVariant} />
             </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
 
-      {/* Barra Inferior */}
       <BottomNavBar activeTab="notificacoes" />
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFE9E8',
-  },
-  cabecalho: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingTop: 10,
-    paddingBottom: 8,
-  },
-  botaoVoltar: {
-    width: 36,
-    height: 36,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-  },
-  tituloCabecalho: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#111111',
-    textAlign: 'center',
-  },
-  espacadorCabecalho: {
-    width: 36,
-  },
-  rolagemTela: {
-    flex: 1,
-  },
-  conteudoRolagem: {
-    paddingHorizontal: 18,
-    paddingTop: 10,
-    paddingBottom: 24,
-  },
-  listaNotificacoes: {
-    width: '100%',
-    gap: 12,
-  },
-  cartaoNotificacao: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 10,
-    paddingVertical: 14,
-    paddingHorizontal: 14,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
-    borderWidth: 1,
-    borderColor: '#F0B8C2',
-  },
-  iconeContainer: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: '#FFE8EC',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 12,
-  },
-  conteudoTexto: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  textoNotificacao: {
-    fontSize: 13,
-    color: '#111111',
-    lineHeight: 18,
-  },
-  nomeUsuario: {
-    fontWeight: 'bold',
-    color: '#DC586D',
-  },
-  textoHorario: {
-    fontSize: 10,
-    color: '#DC586D',
-    fontWeight: '600',
-    marginTop: 2,
-  },
-});

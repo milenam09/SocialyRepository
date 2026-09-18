@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
   SafeAreaView,
   StatusBar,
   ScrollView,
@@ -21,9 +20,15 @@ import * as Location from 'expo-location';
 import { useNavigation } from '../context/NavigationContext';
 import BottomNavBar from '../components/BottomNavBar';
 import { colors } from '../theme/colors';
+import styles from '../styles/NovaPublicacaoScreenStyle';
 
+// =========================================================================
+// AQUI FICA A TELA DE NOVA PUBLICAÇÃO (ONDE O USUÁRIO CRIA E ENVIA O POST)
+// =========================================================================
 export default function NovaPublicacaoScreen() {
   const { goBack, navigate, addFeedPost } = useNavigation();
+
+  // //aqui ficam os dados da publicação (texto, foto, gps e sentimento)
   const [texto, setTexto] = useState('');
   const [uriImagem, setUriImagem] = useState(null);
   const [localizacao, setLocalizacao] = useState(null);
@@ -32,7 +37,6 @@ export default function NovaPublicacaoScreen() {
   const [gpsAutomaticoNaFoto, setGpsAutomaticoNaFoto] = useState(true);
   const [carregandoLocalizacao, setCarregandoLocalizacao] = useState(false);
 
-  // Função para fechar ou descartar a publicação
   const fecharTela = () => {
     if (texto.trim() || uriImagem) {
       Alert.alert(
@@ -48,7 +52,6 @@ export default function NovaPublicacaoScreen() {
     }
   };
 
-  // Função para buscar localização GPS atual
   const obterLocalizacaoGps = async (silencioso = false) => {
     setCarregandoLocalizacao(true);
     try {
@@ -111,7 +114,6 @@ export default function NovaPublicacaoScreen() {
     }
   };
 
-  // Função para tirar foto com a câmera
   const tirarFotoCamera = async () => {
     try {
       const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -148,7 +150,6 @@ export default function NovaPublicacaoScreen() {
     }
   };
 
-  // Função para selecionar imagem da galeria
   const escolherFotoGaleria = async () => {
     try {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -185,7 +186,6 @@ export default function NovaPublicacaoScreen() {
     }
   };
 
-  // Diálogo para escolher localização
   const definirLocalizacao = () => {
     Alert.alert(
       'Adicionar Localização',
@@ -214,7 +214,6 @@ export default function NovaPublicacaoScreen() {
     );
   };
 
-  // Diálogo para escolher sentimento
   const selecionarSentimento = () => {
     Alert.alert('Como você está se sentindo?', 'Escolha um sentimento:', [
       { text: '😄 Feliz', onPress: () => setSentimento('Feliz') },
@@ -224,7 +223,9 @@ export default function NovaPublicacaoScreen() {
     ]);
   };
 
-  // Função para publicar o post no feed
+  // =========================================================================
+  // //aqui fica onde manda a publicação (função que processa e dispara o envio)
+  // =========================================================================
   const publicarPost = async () => {
     if (!texto.trim() && !uriImagem) {
       Alert.alert('Atenção', 'Escreva algo ou tire/selecione uma foto para publicar!');
@@ -242,6 +243,7 @@ export default function NovaPublicacaoScreen() {
       }
     }
 
+    // //aqui fica onde manda a publicação de fato (chama a ação do Feed / API)
     addFeedPost(texto.trim() || 'Nova foto compartilhada', uriImagem, localizacaoFinal, coordenadasFinais);
     Alert.alert('Sucesso!', 'Sua publicação foi compartilhada no feed!', [
       {
@@ -253,7 +255,7 @@ export default function NovaPublicacaoScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#FFE9E8" />
+      <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
       <KeyboardAvoidingView
         style={styles.tecladoContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -266,7 +268,7 @@ export default function NovaPublicacaoScreen() {
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             style={styles.botaoFechar}
           >
-            <Ionicons name="close" size={28} color="#DC586D" />
+            <Ionicons name="close" size={28} color={colors.primaryVariant} />
           </TouchableOpacity>
           <Text style={styles.tituloCabecalho}>Nova Publicação</Text>
           <View style={styles.espacadorCabecalho} />
@@ -277,15 +279,16 @@ export default function NovaPublicacaoScreen() {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
-          {/* Cartão de Publicação */}
+          {/* ========================================================================= */}
+          {/* //aqui fica onde monta a publicação (campo de texto, foto e opções) */}
+          {/* ========================================================================= */}
           <View style={styles.cartao}>
             <Text style={styles.tituloCartao}>O que você está pensando?</Text>
 
-            {/* Campo de Texto da Publicação */}
             <TextInput
               style={styles.campoTextoArea}
               placeholder="Escreva algo..."
-              placeholderTextColor="#999"
+              placeholderTextColor={colors.placeholderGray}
               multiline
               numberOfLines={6}
               textAlignVertical="top"
@@ -293,7 +296,6 @@ export default function NovaPublicacaoScreen() {
               onChangeText={setTexto}
             />
 
-            {/* Prévia da Imagem Selecionada */}
             {uriImagem && (
               <View style={styles.previaImagemWrapper}>
                 <Image source={{ uri: uriImagem }} style={styles.previaImagem} resizeMode="cover" />
@@ -302,12 +304,11 @@ export default function NovaPublicacaoScreen() {
                   onPress={() => setUriImagem(null)}
                   activeOpacity={0.8}
                 >
-                  <Ionicons name="close-circle" size={26} color="#DF5268" />
+                  <Ionicons name="close-circle" size={26} color={colors.primary} />
                 </TouchableOpacity>
               </View>
             )}
 
-            {/* Etiquetas Selecionadas (Foto, GPS, Sentimento) */}
             {(uriImagem || localizacao || sentimento || carregandoLocalizacao) && (
               <View style={styles.containerEtiquetasSelecionadas}>
                 {uriImagem && (
@@ -320,7 +321,7 @@ export default function NovaPublicacaoScreen() {
                 )}
                 {carregandoLocalizacao && (
                   <View style={styles.etiquetaCarregando}>
-                    <ActivityIndicator size="small" color="#DC586D" />
+                    <ActivityIndicator size="small" color={colors.primaryVariant} />
                     <Text style={styles.textoEtiquetaCarregando}>Obtendo localização via GPS...</Text>
                   </View>
                 )}
@@ -348,10 +349,9 @@ export default function NovaPublicacaoScreen() {
               </View>
             )}
 
-            {/* Interruptor de GPS */}
             <View style={styles.containerInterruptorGps}>
               <View style={styles.grupoTextoGps}>
-                <Ionicons name="navigate-circle" size={22} color="#DC586D" />
+                <Ionicons name="navigate-circle" size={22} color={colors.primaryVariant} />
                 <View style={styles.conteudoTextoGps}>
                   <Text style={styles.tituloInterruptorGps}>GPS na Publicação</Text>
                   <Text style={styles.subtituloInterruptorGps}>
@@ -370,7 +370,7 @@ export default function NovaPublicacaoScreen() {
                   }
                 }}
                 trackColor={{ false: '#E0D0D4', true: '#FFA4B2' }}
-                thumbColor={gpsAutomaticoNaFoto ? '#DC586D' : '#F4F3F4'}
+                thumbColor={gpsAutomaticoNaFoto ? colors.primaryVariant : '#F4F3F4'}
               />
             </View>
 
@@ -381,7 +381,7 @@ export default function NovaPublicacaoScreen() {
                 onPress={tirarFotoCamera}
                 activeOpacity={0.7}
               >
-                <Ionicons name="camera-outline" size={20} color="#DC586D" />
+                <Ionicons name="camera-outline" size={20} color={colors.primaryVariant} />
                 <Text style={styles.textoOpcao}>Câmera</Text>
               </TouchableOpacity>
 
@@ -390,7 +390,7 @@ export default function NovaPublicacaoScreen() {
                 onPress={escolherFotoGaleria}
                 activeOpacity={0.7}
               >
-                <Ionicons name="image-outline" size={20} color="#DC586D" />
+                <Ionicons name="image-outline" size={20} color={colors.primaryVariant} />
                 <Text style={styles.textoOpcao}>Galeria</Text>
               </TouchableOpacity>
 
@@ -399,7 +399,7 @@ export default function NovaPublicacaoScreen() {
                 onPress={definirLocalizacao}
                 activeOpacity={0.7}
               >
-                <Ionicons name="location-outline" size={20} color="#DC586D" />
+                <Ionicons name="location-outline" size={20} color={colors.primaryVariant} />
                 <Text style={styles.textoOpcao}>GPS</Text>
               </TouchableOpacity>
 
@@ -408,13 +408,15 @@ export default function NovaPublicacaoScreen() {
                 onPress={selecionarSentimento}
                 activeOpacity={0.7}
               >
-                <Ionicons name="happy-outline" size={20} color="#DC586D" />
+                <Ionicons name="happy-outline" size={20} color={colors.primaryVariant} />
                 <Text style={styles.textoOpcao}>Sentimento</Text>
               </TouchableOpacity>
             </View>
           </View>
 
-          {/* Botão Publicar */}
+          {/* ========================================================================= */}
+          {/* //aqui fica onde manda a publicação (botão que envia a publicação) */}
+          {/* ========================================================================= */}
           <TouchableOpacity
             style={styles.botaoPublicar}
             onPress={publicarPost}
@@ -430,201 +432,3 @@ export default function NovaPublicacaoScreen() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFE9E8',
-  },
-  tecladoContainer: {
-    flex: 1,
-  },
-  cabecalho: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  botaoFechar: {
-    width: 36,
-    height: 36,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-  },
-  tituloCabecalho: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#111111',
-    textAlign: 'center',
-  },
-  espacadorCabecalho: {
-    width: 36,
-  },
-  conteudoRolagem: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    paddingBottom: 20,
-    alignItems: 'center',
-  },
-  cartao: {
-    width: '100%',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#E8A8B5',
-    padding: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  tituloCartao: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: '#111111',
-    marginBottom: 12,
-  },
-  campoTextoArea: {
-    height: 180,
-    backgroundColor: '#F9F9F9',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#EAEAEA',
-    padding: 12,
-    fontSize: 14,
-    color: '#111111',
-    textAlignVertical: 'top',
-    ...(Platform.OS === 'web' ? { outlineStyle: 'none', outlineWidth: 0 } : {}),
-  },
-  previaImagemWrapper: {
-    width: '100%',
-    height: 190,
-    borderRadius: 10,
-    overflow: 'hidden',
-    marginTop: 12,
-    position: 'relative',
-    backgroundColor: '#FFE8EC',
-  },
-  previaImagem: {
-    width: '100%',
-    height: '100%',
-  },
-  botaoRemoverImagem: {
-    position: 'absolute',
-    top: 6,
-    right: 6,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 13,
-  },
-  containerEtiquetasSelecionadas: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-    marginTop: 12,
-  },
-  etiqueta: {
-    backgroundColor: '#FFE8EC',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#E8A8B5',
-  },
-  textoEtiqueta: {
-    fontSize: 11,
-    color: '#A33757',
-    fontWeight: '600',
-  },
-  etiquetaCarregando: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FFF0F2',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#FFCCD5',
-    gap: 6,
-  },
-  textoEtiquetaCarregando: {
-    fontSize: 11,
-    color: '#DC586D',
-    fontWeight: '600',
-  },
-  containerInterruptorGps: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#FFF5F6',
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    marginTop: 14,
-    borderWidth: 1,
-    borderColor: '#F3CCD4',
-  },
-  grupoTextoGps: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-    paddingRight: 10,
-  },
-  conteudoTextoGps: {
-    marginLeft: 8,
-    flex: 1,
-  },
-  tituloInterruptorGps: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: '#333333',
-  },
-  subtituloInterruptorGps: {
-    fontSize: 11,
-    color: '#777777',
-    marginTop: 1,
-  },
-  linhaOpcoes: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    marginTop: 16,
-    paddingTop: 12,
-    borderTopWidth: 1,
-    borderTopColor: '#F0F0F0',
-  },
-  itemOpcao: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    paddingVertical: 4,
-    paddingHorizontal: 4,
-  },
-  textoOpcao: {
-    fontSize: 12,
-    color: '#DC586D',
-    fontWeight: '600',
-  },
-  botaoPublicar: {
-    width: '65%',
-    maxWidth: 240,
-    height: 48,
-    backgroundColor: '#DC586D',
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation: 3,
-  },
-  textoBotaoPublicar: {
-    color: '#FFFFFF',
-    fontSize: 15,
-    fontWeight: 'bold',
-  },
-});

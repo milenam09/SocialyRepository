@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationProvider, useNavigation } from './src/context/NavigationContext';
+import styles from './src/styles/AppStyle';
 
 import TelaInicialScreen from './src/screens/TelaInicialScreen';
 import LoginScreen from './src/screens/LoginScreen';
@@ -60,10 +61,3 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFEBEF',
-  },
-});

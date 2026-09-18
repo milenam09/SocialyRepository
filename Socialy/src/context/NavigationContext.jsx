@@ -24,7 +24,9 @@ export function NavigationProvider({ children }) {
     },
   });
 
-  // Estado global das publicações no feed
+  // =========================================================================
+  // //aqui fica a publicação (estado global com a lista de publicações do feed)
+  // =========================================================================
   const [feedPosts, setFeedPosts] = useState([
     {
       id: '1',
@@ -100,7 +102,9 @@ export function NavigationProvider({ children }) {
     };
   }, []);
 
-  // Publicação em destaque (tela Publicação)
+  // =========================================================================
+  // //aqui fica a publicação (publicação em destaque para a tela PublicacaoScreen)
+  // =========================================================================
   const [selectedPost, setSelectedPost] = useState({
     id: 'post_milena',
     author: 'Milena Mares',
@@ -221,9 +225,13 @@ export function NavigationProvider({ children }) {
     });
   };
 
-  // Funções de atualização do Feed sincronizadas com a API
+  // =========================================================================
+  // //aqui fica onde manda a publicação (salva no Feed e envia para a API/DB)
+  // =========================================================================
   const addFeedPost = async (content, image = null, location = null, coords = null) => {
     const tempId = Date.now().toString();
+
+    // //aqui monta o objeto da publicação com autor, texto, imagem e coordenadas
     const newPost = {
       id: tempId,
       user: userProfile.username,
@@ -240,9 +248,11 @@ export function NavigationProvider({ children }) {
       isBookmarked: false,
       time: 'agora mesmo',
     };
+
+    // //aqui insere a nova publicação no estado local do feed
     setFeedPosts((prev) => [newPost, ...prev]);
 
-    // Sincroniza o ID permanente gerado pelo json-server
+    // //aqui manda a publicação para a API / banco de dados (json-server)
     try {
       const serverPost = await api.createPost(newPost);
       if (serverPost && serverPost.id && serverPost.id !== tempId) {
